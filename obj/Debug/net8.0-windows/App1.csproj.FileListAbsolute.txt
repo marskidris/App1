@@ -26,3 +26,4 @@ C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\A
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\ref\App1.dll
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\ToeJam_Transparent.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Earl_Transparent.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.sourcelink.json
