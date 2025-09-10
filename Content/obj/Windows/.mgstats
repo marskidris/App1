@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Earl_Transparent.png","C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/bin/Windows/2D/Earl_Transparent.xnb","TextureProcessor","Texture2DContent",135288,2549421,0.2736709
+"C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/ToeJam_Transparent.png","C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/bin/Windows/2D/ToeJam_Transparent.xnb","TextureProcessor","Texture2DContent",110869,2549421,0.3625806
