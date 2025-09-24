@@ -43,35 +43,34 @@ public class GameState
         previousKeyboardState = currentKeyboardState;
         currentKeyboardState = Keyboard.GetState();
         
-        // Handle spacebar input for state transitions
-        bool spacePressed = currentKeyboardState.IsKeyDown(Keys.Space) && 
-                           !previousKeyboardState.IsKeyDown(Keys.Space);
+        bool mDown = currentKeyboardState.IsKeyDown(Keys.M) && 
+                           !previousKeyboardState.IsKeyDown(Keys.M);
         
         switch (CurrentState)
         {
             case GameStateType.StartScreen:
-                if (spacePressed)
+                if (mDown)
                 {
                     CurrentState = GameStateType.Playing;
                 }
                 break;
                 
             case GameStateType.Playing:
-                if (spacePressed)
+                if (mDown)
                 {
                     CurrentState = GameStateType.PausedMenu;
                 }
                 break;
                 
             case GameStateType.PausedMenu:
-                if (spacePressed)
+                if (mDown)
                 {
                     CurrentState = GameStateType.Playing;
                 }
                 break;
         }
         
-        // Update animated components
+        // Update animated 
         menuScreen.Update(gameTime);
         animatedLetters.Update(gameTime);
     }
@@ -85,7 +84,6 @@ public class GameState
                 break;
                 
             case GameStateType.Playing:
-                // Game content will be drawn by Main class
                 break;
                 
             case GameStateType.PausedMenu:

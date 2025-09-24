@@ -7,79 +7,67 @@ namespace App1.Source.Engine
     {
         private Player _player;
         private KeyboardState _previousKeyboardState;
-        private float _speed = 150f;
+        private MovementState _currentState;
+        
+        private Vector2 _velocity = Vector2.Zero;
 
         public PlayerMovement(Player player)
         {
             _player = player;
             _previousKeyboardState = Keyboard.GetState();
+            _currentState = new WalkingState(player);
         }
 
         public void Update(GameTime gameTime)
         {
             KeyboardState currentKeyboardState = Keyboard.GetState();
-            Vector2 velocity = Vector2.Zero;
+            
+            // Check for R key press to toggle between walking and running
+            bool rKeyPressed = currentKeyboardState.IsKeyDown(Keys.R) && !_previousKeyboardState.IsKeyDown(Keys.R);
+            
+            if (rKeyPressed)
+            {
+                if (_currentState is WalkingState)
+                {
+                    _currentState = new RunningState(_player);
+                }
+                else if (_currentState is RunningState)
+                {
+                    _currentState = new WalkingState(_player);
+                }
+            }
+            
+            _currentState.HandleInput(currentKeyboardState, _previousKeyboardState, gameTime);
+            
+            float currentSpeed = _currentState.GetSpeed();
+            _velocity.X = 0f;
+            _velocity.Y = 0f;
             
             if (currentKeyboardState.IsKeyDown(Keys.W))
-            {
-                velocity.Y = -_speed;
-            }
+                _velocity.Y = -currentSpeed;
             if (currentKeyboardState.IsKeyDown(Keys.S))
-            {
-                velocity.Y = _speed;
-            }
+                _velocity.Y = currentSpeed;
             if (currentKeyboardState.IsKeyDown(Keys.A))
-            {
-                velocity.X = -_speed;
-            }
+                _velocity.X = -currentSpeed;
             if (currentKeyboardState.IsKeyDown(Keys.D))
+                _velocity.X = currentSpeed;
+
+            if (_velocity.X != 0f && _velocity.Y != 0f)
             {
-                velocity.X = _speed;
+                _velocity.Normalize();
+                _velocity.X *= currentSpeed;
+                _velocity.Y *= currentSpeed;
             }
 
-            if (velocity.X != 0 && velocity.Y != 0)
-            {
-                velocity.Normalize();
-                velocity *= _speed;
-            }
-
-            if (velocity.Y < 0)
-            {
-                _player.SetDirection("W");
-            }
-            else if (velocity.Y > 0)
-            {
-                _player.SetDirection("S");
-            }
-            else if (velocity.X < 0)
-            {
-                _player.SetDirection("A");
-            }
-            else if (velocity.X > 0)
-            {
-                _player.SetDirection("D");
-            }
-
-            _player.Move(velocity * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            _currentState.UpdateMovement(_velocity, gameTime);
             
+            _currentState = _currentState.GetNextState();
+
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _player.Move(new Vector2(_velocity.X * deltaTime, _velocity.Y * deltaTime));
             _player.Update(gameTime);
             
             _previousKeyboardState = currentKeyboardState;
-        }
-
-        public void Update()
-        {
-            Update(new GameTime());
-        }
-
-        public void SetSpeed(float newSpeed)
-        {
-            _speed = newSpeed;
-        }
-
-        public float GetSpeed()
-        {
-            return _speed;
         }
     }
 }

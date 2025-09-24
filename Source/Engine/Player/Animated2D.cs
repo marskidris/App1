@@ -19,10 +19,12 @@ public class Animated2D
         this.texture = texture;
         this.position = position;
         this.size = size;
+        
         frames = new Rectangle[3];
         frames[0] = new Rectangle(9, 13, 23, 33);
         frames[1] = new Rectangle(37, 16, 24, 30);
         frames[2] = new Rectangle(65, 13, 23, 33);
+        
         currentFrame = 0;
         timer = 0f;
     }
