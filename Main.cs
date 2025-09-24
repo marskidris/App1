@@ -11,8 +11,8 @@ public class Main : Game
     GraphicsDeviceManager graphics;
     SpriteBatch spriteBatch;
     
-    World world;
-    Animated2D animated;
+    Player player;
+    PlayerMovement playerMovement;
 
     public Main()
     {
@@ -34,8 +34,8 @@ public class Main : Game
         Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // TODO: use this.Content to load your game content here
-        // world = new World();
-        animated = new Animated2D(Globals.content.Load<Texture2D>("2D/Earl_Transparent"), new Vector2(100, 100), new Vector2(150, 150));
+        player = new Player("2D/Earl_Transparent", new Vector2(100, 100), new Vector2(150, 150));
+        playerMovement = new PlayerMovement(player);
         
     }
 
@@ -47,7 +47,7 @@ public class Main : Game
 
         // TODO: Add your update logic here
         
-        // world.Update();
+        playerMovement.Update(gameTime);
         base.Update(gameTime);
     }
 
@@ -59,11 +59,7 @@ public class Main : Game
         
         Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
        
-        // world.Draw();
-        animated.Update(gameTime);
-        animated.Draw(Globals.spriteBatch);
-        
-        
+        player.Draw();
         
         Globals.spriteBatch.End();
 

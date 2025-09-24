@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace App1.Source.Engine;
 
-public class Basic2D
+public class IdleEarl
 {
     public Vector2 pos, dims;
     public Texture2D myModel;
     public Rectangle sourceRect;
     
 
-    public Basic2D(string PATH, Vector2 POS, Vector2 DIMS)
+    public IdleEarl(string PATH, Vector2 POS, Vector2 DIMS)
     {
         pos = POS;
         dims = DIMS;
@@ -40,7 +40,6 @@ public class Basic2D
 
     public virtual void Update()
     {
-        // default no-op; override in subclasses if needed
     }
 
     public virtual void Draw()

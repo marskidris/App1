@@ -14,17 +14,18 @@ namespace App1.Source;
 
 public class World
 {
-    public Basic2D hero;
+    public Player hero;
+    public PlayerMovement heroMovement;
 
     public World()
     {
-        hero = new Basic2D("2D\\Earl_Transparent", new Vector2(9, 13), new Vector2(150, 150));
-        hero.sourceRect = new Rectangle(9, 13, 23, 33); 
+        hero = new Player("2D\\Earl_Transparent", new Vector2(150, 150), new Vector2(150, 150));
+        heroMovement = new PlayerMovement(hero);
     }
 
     public virtual void Update()
     {
-        hero.Update();
+        heroMovement.Update();
     }
 
     public virtual void Draw()
