@@ -13,10 +13,16 @@ public class Main : Game
     
     Player player;
     PlayerMovement playerMovement;
+    GameState gameState;
 
     public Main()
     {
         graphics = new GraphicsDeviceManager(this);
+        Globals.graphics = graphics;
+        // graphics.IsFullScreen = true;
+        graphics.PreferredBackBufferWidth = 1280;
+        graphics.PreferredBackBufferHeight = 720;
+        graphics.ApplyChanges();
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
@@ -33,6 +39,10 @@ public class Main : Game
         Globals.content = this.Content;
         Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        // Initialize game state system
+        gameState = new GameState();
+        gameState.LoadContent();
+
         // TODO: use this.Content to load your game content here
         player = new Player("2D/Earl_Transparent", new Vector2(100, 100), new Vector2(150, 150));
         playerMovement = new PlayerMovement(player);
@@ -45,26 +55,33 @@ public class Main : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        gameState.Update(gameTime);
+
+        if (gameState.IsPlaying())
+        {
+            playerMovement.Update(gameTime);
+        }
         
-        playerMovement.Update(gameTime);
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
 
-        // TODO: Add your drawing code here
-        
         Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-       
-        player.Draw();
+        
+        // Draw game state screens (start screen, pause screen)
+        gameState.Draw(Globals.spriteBatch);
+        
+        // Only draw game content when playing
+        if (gameState.ShowGameContent())
+        {
+            player.Draw();
+        }
         
         Globals.spriteBatch.End();
 
         base.Draw(gameTime);
     }
-    
 }
-
