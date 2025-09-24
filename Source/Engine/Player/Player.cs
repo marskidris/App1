@@ -20,6 +20,7 @@ public class Player
     float switchTime = 0.1f;
     bool isMoving = false;
     bool isRunning = false;
+    Rectangle[] currentFrames;
 
     private const int DIR_UP = 0;
     private const int DIR_DOWN = 1; 
@@ -53,6 +54,7 @@ public class Player
         
         currentFrame = 0;
         timer = 0f;
+        currentFrames = earl.GetFrames(isRunning, direction);
     }
 
     public void Move(Vector2 movement)
@@ -72,11 +74,18 @@ public class Player
 
     public void SetRunning(bool running)
     {
-        isRunning = running;
+        if (isRunning != running)
+        {
+            isRunning = running;
+            currentFrame = 0;
+            timer = 0f;
+        }
     }
 
     public void Update(GameTime gameTime)
     {
+        currentFrames = earl.GetFrames(isRunning && isMoving, direction);
+        
         if (isMoving)
         {
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -86,31 +95,19 @@ public class Player
                 currentFrame++;
                 timer = 0f;
                 
-                Rectangle[] currentFrames = earl.GetFrames(isRunning, direction);
-                
                 if (currentFrame >= currentFrames.Length)
                     currentFrame = 0;
             }
         }
         else
         {
-            if (isRunning)
-            {
-                currentFrame = 0;
-                timer = 0f;
-            }
-            else
-            {
-                currentFrame = 0;
-            }
+            currentFrame = 0;
         }
     }
 
     public void Draw()
     {
         if (texture == null) return;
-        
-        bool useRunningFrames = isMoving && isRunning;
 
         Globals.spriteBatch.Draw(
             texture,
