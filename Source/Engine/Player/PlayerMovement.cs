@@ -22,18 +22,38 @@ namespace App1.Source.Engine
         {
             KeyboardState currentKeyboardState = Keyboard.GetState();
             
-            // Check for R key press to toggle between walking and running
             bool rKeyPressed = currentKeyboardState.IsKeyDown(Keys.R) && !_previousKeyboardState.IsKeyDown(Keys.R);
-            
-            if (rKeyPressed)
+            bool eKeyPressed = currentKeyboardState.IsKeyDown(Keys.E) && !_previousKeyboardState.IsKeyDown(Keys.E);
+
+            if (eKeyPressed)
+            {
+                if (_currentState is SneakState)
+                {
+                    _currentState = new WalkingState(_player);
+                    _player.ResetAnimation(); // Reset animation when exiting sneak
+                }
+                else
+                {
+                    _currentState = new SneakState(_player);
+                    _player.ResetAnimation(); // Reset animation when entering sneak
+                }
+            }
+            else if (rKeyPressed)
             {
                 if (_currentState is WalkingState)
                 {
                     _currentState = new RunningState(_player);
+                    _player.ResetAnimation(); // Reset animation when switching to running
                 }
                 else if (_currentState is RunningState)
                 {
                     _currentState = new WalkingState(_player);
+                    _player.ResetAnimation(); // Reset animation when switching to walking
+                }
+                else if (_currentState is SneakState)
+                {
+                    _currentState = new RunningState(_player);
+                    _player.ResetAnimation(); // Reset animation when switching from sneak to running
                 }
             }
             
@@ -65,7 +85,7 @@ namespace App1.Source.Engine
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _player.Move(new Vector2(_velocity.X * deltaTime, _velocity.Y * deltaTime));
-            _player.Update(gameTime);
+            _player.Update(gameTime, _currentState);
             
             _previousKeyboardState = currentKeyboardState;
         }

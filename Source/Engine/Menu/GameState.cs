@@ -8,7 +8,8 @@ public enum GameStateType
 {
     StartScreen,
     Playing,
-    PausedMenu
+    PausedMenu,
+    PresentsMenu
 }
 
 public class GameState
@@ -17,8 +18,8 @@ public class GameState
     private KeyboardState previousKeyboardState;
     private KeyboardState currentKeyboardState;
     
-    // Menu screen components
     private MenuScreen menuScreen;
+    private PresentsMenu presentsMenu;
     private AnimatedLetters animatedLetters;
     
     public GameState()
@@ -30,10 +31,11 @@ public class GameState
     
     public void LoadContent()
     {
-        // Initialize menu screen and animated letters
         menuScreen = new MenuScreen();
+        presentsMenu = new PresentsMenu();
         animatedLetters = new AnimatedLetters();
         
+        menuScreen.LoadContent();
         menuScreen.LoadContent();
         animatedLetters.LoadContent();
     }
@@ -45,6 +47,8 @@ public class GameState
         
         bool mDown = currentKeyboardState.IsKeyDown(Keys.M) && 
                            !previousKeyboardState.IsKeyDown(Keys.M);
+        bool spaceDown = currentKeyboardState.IsKeyDown(Keys.Space) && 
+                               !previousKeyboardState.IsKeyDown(Keys.Space);
         
         switch (CurrentState)
         {
@@ -60,6 +64,10 @@ public class GameState
                 {
                     CurrentState = GameStateType.PausedMenu;
                 }
+                else if (spaceDown)
+                {
+                    CurrentState = GameStateType.PresentsMenu;
+                }
                 break;
                 
             case GameStateType.PausedMenu:
@@ -68,10 +76,17 @@ public class GameState
                     CurrentState = GameStateType.Playing;
                 }
                 break;
+                
+            case GameStateType.PresentsMenu:
+                if (spaceDown)
+                {
+                    CurrentState = GameStateType.Playing;
+                }
+                break;
         }
         
-        // Update animated 
         menuScreen.Update(gameTime);
+        presentsMenu.Update(gameTime);
         animatedLetters.Update(gameTime);
     }
     
@@ -89,12 +104,15 @@ public class GameState
             case GameStateType.PausedMenu:
                 DrawPauseMenu(spriteBatch);
                 break;
+                
+            case GameStateType.PresentsMenu:
+                DrawPresentsMenu(spriteBatch);
+                break;
         }
     }
     
     private void DrawStartScreen(SpriteBatch spriteBatch)
     {
-        // Clear with dark background
         var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
         Texture2D pixel = CreatePixelTexture();
         if (pixel != null)
@@ -112,7 +130,6 @@ public class GameState
     
     private void DrawPauseMenu(SpriteBatch spriteBatch)
     {
-        // Draw semi-transparent overlay
         var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
         Texture2D pixel = CreatePixelTexture();
         if (pixel != null)
@@ -121,10 +138,23 @@ public class GameState
                 Color.Black * 0.7f);
         }
         
-        // Draw animated menu screen elements
         menuScreen.Draw(spriteBatch);
         
-        // Draw animated letters on top
+        animatedLetters.Draw(spriteBatch);
+    }
+    
+    private void DrawPresentsMenu(SpriteBatch spriteBatch)
+    {
+        var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
+        Texture2D pixel = CreatePixelTexture();
+        if (pixel != null)
+        {
+            spriteBatch.Draw(pixel, new Rectangle(0, 0, viewport.Width, viewport.Height), 
+                Color.Black * 0.7f);
+        }
+        
+        presentsMenu.Draw(spriteBatch);
+        
         animatedLetters.Draw(spriteBatch);
     }
     

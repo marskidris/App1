@@ -5,7 +5,7 @@ public class Earl
     private Rectangle[] playerFramesS, playerFramesA, playerFramesW, playerFramesD, 
         playerFramesSR, playerFramesAR, playerFramesWR, playerFramesDR, 
         playerFramesSS, playerFramesAS, playerFramesWS, playerFramesDS;
-
+    // reminder: S = sneak, J = jump
     public Earl()
     {
         EarlFrames();
@@ -73,32 +73,46 @@ public class Earl
         playerFramesDR[3] = new Rectangle(291, 736, 34, 36);
         
         playerFramesSS = new Rectangle[4];
-        playerFramesSS[0] = new Rectangle(2, 195, 32, 45);
+        playerFramesSS[0] = new Rectangle(2, 201, 30, 39);
         playerFramesSS[1] = new Rectangle(35, 206, 26, 34);
         playerFramesSS[2] = new Rectangle(65, 205, 32, 35);
-        playerFramesSS[3] = new Rectangle(95, 211, 40, 29);
+        playerFramesSS[3] = new Rectangle(101, 211, 30, 29);
         
         playerFramesAS = new Rectangle[4];
         playerFramesAS[0] = new Rectangle(133, 255, 40, 25);
-        playerFramesAS[1] = new Rectangle(176, 244, 28, 36);
+        playerFramesAS[1] = new Rectangle(176, 244, 24, 36);
         playerFramesAS[2] = new Rectangle(202, 246, 31, 34);
         playerFramesAS[3] = new Rectangle(235, 250, 32, 30);
         
+        playerFramesWS = new Rectangle[4];
+        playerFramesWS[0] = new Rectangle(3, 246, 222228, 39);
+        playerFramesWS[1] = new Rectangle(35, 251, 26, 32);
+        playerFramesWS[2] = new Rectangle(66, 250, 32, 32);
+        playerFramesWS[3] = new Rectangle(102, 253, 28, 29);
         
+        playerFramesDS = new Rectangle[4];
+        playerFramesDS[0] = new Rectangle(134, 215, 40, 25);
+        playerFramesDS[1] = new Rectangle(176, 204, 24, 36);
+        playerFramesDS[2] = new Rectangle(204, 206, 31, 34);
+        playerFramesDS[3] = new Rectangle(236, 210, 32, 30);
     }
 
-    public Rectangle[] GetFrames(bool isRunning, int direction)
+    public Rectangle[] GetFrames(bool isRunning, bool isSneaking, int direction)
     {
-        return (isRunning, direction) switch
+        return (isRunning, isSneaking, direction) switch
         {
-            (false, 0) => playerFramesW,
-            (false, 1) => playerFramesS,
-            (false, 2) => playerFramesA,
-            (false, 3) => playerFramesD,
-            (true, 0) => playerFramesWR,
-            (true, 1) => playerFramesSR,
-            (true, 2) => playerFramesAR,
-            (true, 3) => playerFramesDR,
+            (false, false, 0) => playerFramesW,
+            (false, false, 1) => playerFramesS,
+            (false, false, 2) => playerFramesA,
+            (false, false, 3) => playerFramesD,
+            (true, false, 0) => playerFramesWR,
+            (true, false, 1) => playerFramesSR,
+            (true, false, 2) => playerFramesAR,
+            (true, false, 3) => playerFramesDR,
+            (_, true, 0) => playerFramesWS,
+            (_, true, 1) => playerFramesSS,
+            (_, true, 2) => playerFramesAS,
+            (_, true, 3) => playerFramesDS,
             _ => playerFramesS
         };
     }

@@ -20,10 +20,11 @@ public class Animated2D
         this.position = position;
         this.size = size;
         
-        frames = new Rectangle[3];
-        frames[0] = new Rectangle(9, 13, 23, 33);
-        frames[1] = new Rectangle(37, 16, 24, 30);
-        frames[2] = new Rectangle(65, 13, 23, 33);
+        frames = new Rectangle[4];
+        frames[0] = new Rectangle(134, 215, 40, 25);
+        frames[1] = new Rectangle(176, 204, 24, 36);
+        frames[2] = new Rectangle(204, 206, 31, 34);
+        frames[3] = new Rectangle(236, 210, 32, 30);
         
         currentFrame = 0;
         timer = 0f;

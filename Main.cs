@@ -14,7 +14,7 @@ public class Main : Game
     Player player;
     PlayerMovement playerMovement;
     GameState gameState;
-    Animated2D testAnimation; // Added for testing playerFramesA frames
+    Animated2D testAnimation;
 
     public Main()
     {
@@ -40,7 +40,6 @@ public class Main : Game
         Globals.content = this.Content;
         Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // Initialize game state system
         gameState = new GameState();
         gameState.LoadContent();
 
@@ -48,11 +47,11 @@ public class Main : Game
         player = new Player("2D/Earl_Transparent", new Vector2(100, 100), new Vector2(150, 150));
         playerMovement = new PlayerMovement(player);
         
-        // testAnimation = new Animated2D(
-        //     Globals.content.Load<Texture2D>("2D/Earl_Transparent"), 
-        //     new Vector2(400, 200), 
-        //     new Vector2(100, 100)
-        // );
+        testAnimation = new Animated2D(
+            Globals.content.Load<Texture2D>("2D/Earl_Transparent"), 
+            new Vector2(400, 200), 
+            new Vector2(100, 100)
+        );
     }
 
     protected override void Update(GameTime gameTime)
@@ -66,7 +65,7 @@ public class Main : Game
         if (gameState.IsPlaying())
         {
             playerMovement.Update(gameTime);
-            // testAnimation.Update(gameTime); // Update test animation
+            testAnimation.Update(gameTime); // Update test animation
         }
         
         base.Update(gameTime);
@@ -78,14 +77,12 @@ public class Main : Game
 
         Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
         
-        // Draw game state screens (start screen, pause screen)
         gameState.Draw(Globals.spriteBatch);
         
-        // Only draw game content when playing
         if (gameState.ShowGameContent())
         {
             player.Draw();
-            // testAnimation.Draw(Globals.spriteBatch); // Draw test animation
+            testAnimation.Draw(Globals.spriteBatch); // Draw test animation
         }
         
         Globals.spriteBatch.End();

@@ -1,15 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace App1.Source.Engine
 {
-    public class WalkingState : MovementState
+    public class SneakState : MovementState
     {
         private Player _player;
-        private float _speed = 150f;
+        private float _speed = 100f;
 
-        public WalkingState(Player player)
+        public SneakState(Player player)
         {
             _player = player;
         }

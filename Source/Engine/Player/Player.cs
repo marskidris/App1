@@ -1,8 +1,6 @@
-using System.Numerics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
 using App1.Source.Engine;
@@ -19,7 +17,6 @@ public class Player
     float timer;
     float switchTime = 0.1f;
     bool isMoving = false;
-    bool isRunning = false;
     Rectangle[] currentFrames;
 
     private const int DIR_UP = 0;
@@ -33,7 +30,6 @@ public class Player
         this.size = size;
         earl = new Earl();
         
-        // Load texture using Globals content manager
         try
         {
             texture = Globals.content.Load<Texture2D>(texturePath);
@@ -54,13 +50,13 @@ public class Player
         
         currentFrame = 0;
         timer = 0f;
-        currentFrames = earl.GetFrames(isRunning, direction);
+        currentFrames = earl.GetFrames(false, false, direction);
     }
 
     public void Move(Vector2 movement)
     {
         position += movement;
-        isMoving = movement != Vector2.Zero;
+        isMoving = movement.Length() > 0;
     }
 
     public void SetDirection(int dir)
@@ -72,29 +68,40 @@ public class Player
         }
     }
 
-    public void SetRunning(bool running)
+    public void ResetAnimation()
     {
-        if (isRunning != running)
+        currentFrame = 0;
+        timer = 0f;
+    }
+
+    public void Update(GameTime gameTime, MovementState movementState)
+    {
+        Rectangle[] newFrames;
+        switch (movementState)
         {
-            isRunning = running;
+            case SneakState:
+                newFrames = earl.GetFrames(false, true, direction);
+                break;
+            case RunningState when isMoving:
+                newFrames = earl.GetFrames(true, false, direction);
+                break;
+            default:
+                newFrames = earl.GetFrames(false, false, direction);
+                break;
+        }
+        if (currentFrames != newFrames)
+        {
+            currentFrames = newFrames;
             currentFrame = 0;
             timer = 0f;
         }
-    }
-
-    public void Update(GameTime gameTime)
-    {
-        currentFrames = earl.GetFrames(isRunning && isMoving, direction);
-        
         if (isMoving)
         {
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
             if (timer >= switchTime)
             {
                 currentFrame++;
                 timer = 0f;
-                
                 if (currentFrame >= currentFrames.Length)
                     currentFrame = 0;
             }
@@ -102,6 +109,7 @@ public class Player
         else
         {
             currentFrame = 0;
+            timer = 0f;
         }
     }
 
@@ -120,6 +128,7 @@ public class Player
             0.0f
         );
     }
+
 
     public Vector2 Position => position;
 }
