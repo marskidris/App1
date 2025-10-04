@@ -79,7 +79,7 @@ public class Player
         Rectangle[] newFrames;
         switch (movementState)
         {
-            case SneakState:
+            case SneakState when isMoving:
                 newFrames = earl.GetFrames(false, true, direction);
                 break;
             case RunningState when isMoving:

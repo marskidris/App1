@@ -21,8 +21,8 @@ public class Main : Game
         graphics = new GraphicsDeviceManager(this);
         Globals.graphics = graphics;
         // graphics.IsFullScreen = true;
-        graphics.PreferredBackBufferWidth = 1280;
-        graphics.PreferredBackBufferHeight = 720;
+        graphics.PreferredBackBufferWidth = 1600;
+        graphics.PreferredBackBufferHeight = 900;
         graphics.ApplyChanges();
         Content.RootDirectory = "Content";
         IsMouseVisible = true;

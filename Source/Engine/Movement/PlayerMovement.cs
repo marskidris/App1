@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace App1.Source.Engine
 {
@@ -30,12 +31,14 @@ namespace App1.Source.Engine
                 if (_currentState is SneakState)
                 {
                     _currentState = new WalkingState(_player);
-                    _player.ResetAnimation(); // Reset animation when exiting sneak
+                    _player.ResetAnimation();
+                    Console.WriteLine("Walking State is Active");
                 }
                 else
                 {
                     _currentState = new SneakState(_player);
-                    _player.ResetAnimation(); // Reset animation when entering sneak
+                    _player.ResetAnimation();
+                    Console.WriteLine("Sneak State is Active");
                 }
             }
             else if (rKeyPressed)
@@ -43,17 +46,20 @@ namespace App1.Source.Engine
                 if (_currentState is WalkingState)
                 {
                     _currentState = new RunningState(_player);
-                    _player.ResetAnimation(); // Reset animation when switching to running
+                    _player.ResetAnimation();
+                    Console.WriteLine("Running State is Active");
                 }
                 else if (_currentState is RunningState)
                 {
                     _currentState = new WalkingState(_player);
-                    _player.ResetAnimation(); // Reset animation when switching to walking
+                    _player.ResetAnimation();
+                    Console.WriteLine("Walking State is Active");
                 }
                 else if (_currentState is SneakState)
                 {
                     _currentState = new RunningState(_player);
-                    _player.ResetAnimation(); // Reset animation when switching from sneak to running
+                    _player.ResetAnimation();
+                    Console.WriteLine("Running State is Active");
                 }
             }
             

@@ -7,7 +7,6 @@ namespace App1.Source.Engine
     {
         private Player _player;
         private float _runSpeed = 300f;
-        private bool _wasMoving = false;
 
         public RunningState(Player player)
         {
@@ -33,18 +32,12 @@ namespace App1.Source.Engine
                 else if (velocity.X > 0)
                     _player.SetDirection(3);
             }
-            
-            _wasMoving = isCurrentlyMoving;
         }
 
         public float GetSpeed() => _runSpeed;
 
         public MovementState GetNextState()
         {
-            if (!_wasMoving)
-            {
-                return new WalkingState(_player);
-            }
             return this;
         }
     }

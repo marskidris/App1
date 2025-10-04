@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace App1.Source.Engine;
 
@@ -9,24 +10,30 @@ public enum GameStateType
     StartScreen,
     Playing,
     PausedMenu,
-    PresentsMenu
+    PresentsMenu,
+    MapMenu
 }
 
 public class GameState
 {
     public GameStateType CurrentState { get; private set; }
+    private GameStateType previousState;
     private KeyboardState previousKeyboardState;
     private KeyboardState currentKeyboardState;
     
     private MenuScreen menuScreen;
     private PresentsMenu presentsMenu;
     private AnimatedLetters animatedLetters;
+    private Map mapMenu;
+    private Time gameTime;
     
     public GameState()
     {
         CurrentState = GameStateType.StartScreen;
+        previousState = GameStateType.StartScreen;
         previousKeyboardState = Keyboard.GetState();
         currentKeyboardState = Keyboard.GetState();
+        gameTime = new Time();
     }
     
     public void LoadContent()
@@ -34,10 +41,14 @@ public class GameState
         menuScreen = new MenuScreen();
         presentsMenu = new PresentsMenu();
         animatedLetters = new AnimatedLetters();
+        mapMenu = new Map();
         
         menuScreen.LoadContent();
-        menuScreen.LoadContent();
+        presentsMenu.LoadContent();
         animatedLetters.LoadContent();
+        mapMenu.LoadContent();
+        
+        menuScreen.Activate();
     }
     
     public void Update(GameTime gameTime)
@@ -49,6 +60,10 @@ public class GameState
                            !previousKeyboardState.IsKeyDown(Keys.M);
         bool spaceDown = currentKeyboardState.IsKeyDown(Keys.Space) && 
                                !previousKeyboardState.IsKeyDown(Keys.Space);
+        bool nDown = currentKeyboardState.IsKeyDown(Keys.N) && 
+                           !previousKeyboardState.IsKeyDown(Keys.N);
+        
+        previousState = CurrentState;
         
         switch (CurrentState)
         {
@@ -56,10 +71,12 @@ public class GameState
                 if (mDown)
                 {
                     CurrentState = GameStateType.Playing;
+                    this.gameTime.Reset();
                 }
                 break;
                 
             case GameStateType.Playing:
+                this.gameTime.Update(gameTime);
                 if (mDown)
                 {
                     CurrentState = GameStateType.PausedMenu;
@@ -67,6 +84,11 @@ public class GameState
                 else if (spaceDown)
                 {
                     CurrentState = GameStateType.PresentsMenu;
+                }
+                else if (nDown)
+                {
+                    CurrentState = GameStateType.MapMenu;
+                    mapMenu.Activate();
                 }
                 break;
                 
@@ -78,16 +100,41 @@ public class GameState
                 break;
                 
             case GameStateType.PresentsMenu:
+                this.gameTime.Update(gameTime);
                 if (spaceDown)
                 {
                     CurrentState = GameStateType.Playing;
                 }
                 break;
+                
+            case GameStateType.MapMenu:
+                if (nDown)
+                {
+                    CurrentState = GameStateType.Playing;
+                    mapMenu.Deactivate();
+                }
+                break;
+        }
+        
+        if (previousState != CurrentState && IsInMenuState(CurrentState))
+        {
+            menuScreen.Activate();
+        }
+        
+        if (previousState != CurrentState && CurrentState == GameStateType.PresentsMenu)
+        {
+            presentsMenu.Activate();
         }
         
         menuScreen.Update(gameTime);
         presentsMenu.Update(gameTime);
         animatedLetters.Update(gameTime);
+        mapMenu.Update(gameTime);
+    }
+    
+    private bool IsInMenuState(GameStateType state)
+    {
+        return state == GameStateType.StartScreen || state == GameStateType.PausedMenu;
     }
     
     public void Draw(SpriteBatch spriteBatch)
@@ -107,6 +154,10 @@ public class GameState
                 
             case GameStateType.PresentsMenu:
                 DrawPresentsMenu(spriteBatch);
+                break;
+                
+            case GameStateType.MapMenu:
+                DrawMapMenu(spriteBatch);
                 break;
         }
     }
@@ -145,15 +196,35 @@ public class GameState
     
     private void DrawPresentsMenu(SpriteBatch spriteBatch)
     {
+        if (Globals.content != null)
+        {
+            
+        }
+        
         var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
         Texture2D pixel = CreatePixelTexture();
         if (pixel != null)
         {
             spriteBatch.Draw(pixel, new Rectangle(0, 0, viewport.Width, viewport.Height), 
-                Color.Black * 0.7f);
+                Color.Black * 0.3f);
         }
         
         presentsMenu.Draw(spriteBatch);
+        
+        animatedLetters.Draw(spriteBatch);
+    }
+    
+    private void DrawMapMenu(SpriteBatch spriteBatch)
+    {
+        var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
+        Texture2D pixel = CreatePixelTexture();
+        if (pixel != null)
+        {
+            spriteBatch.Draw(pixel, new Rectangle(0, 0, viewport.Width, viewport.Height), 
+                Color.Black * 0.5f);
+        }
+        
+        mapMenu.Draw(spriteBatch);
         
         animatedLetters.Draw(spriteBatch);
     }
@@ -179,11 +250,16 @@ public class GameState
     
     public bool ShowGameContent()
     {
-        return CurrentState == GameStateType.Playing;
+        return CurrentState == GameStateType.Playing || CurrentState == GameStateType.PresentsMenu;
     }
     
     public bool IsInMenu()
     {
         return CurrentState == GameStateType.StartScreen || CurrentState == GameStateType.PausedMenu;
+    }
+    
+    public MenuScreen GetMenuScreen()
+    {
+        return menuScreen;
     }
 }
