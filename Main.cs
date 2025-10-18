@@ -49,8 +49,8 @@ public class Main : Game
         
         testAnimation = new Animated2D(
             Globals.content.Load<Texture2D>("2D/Earl_Transparent"), 
-            new Vector2(400, 200), 
-            new Vector2(100, 100)
+            new Vector3(400, 200, 0), // Using Vector3 - Z=0 for default layer depth
+            new Vector3(100, 100, 0)  // Using Vector3 - Z component not used for size
         );
     }
 
@@ -65,6 +65,7 @@ public class Main : Game
         if (gameState.IsPlaying())
         {
             playerMovement.Update(gameTime);
+            testAnimation.SetPlayerPosition(new Vector3(player.Position.X, player.Position.Y, 0));
             testAnimation.Update(gameTime); // Update test animation
         }
         
