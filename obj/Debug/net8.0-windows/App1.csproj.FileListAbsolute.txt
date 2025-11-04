@@ -54,3 +54,4 @@ C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\C
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Tornado.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Wiseman.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Wizard.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\mgcb.tool.restore
