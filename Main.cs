@@ -1,5 +1,6 @@
 ﻿using App1.Source;
 using App1.Source.Engine;
+using App1.Source.Engine.Audio;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -40,6 +41,10 @@ public class Main : Game
         Globals.content = this.Content;
         Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        // Load and play background music
+        AudioState.Instance.LoadContent(Content);
+        AudioState.Instance.PlayBackgroundMusic();
+
         gameState = new GameState();
         gameState.LoadContent();
 
@@ -59,6 +64,9 @@ public class Main : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+
+        // Update audio state for sound instance management
+        AudioState.Instance.Update();
 
         gameState.Update(gameTime);
 

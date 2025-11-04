@@ -25,30 +25,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/AngryBees.png
 
-#begin 2D/AngryBees.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/AngryBees.png
-
-#begin 2D/Average_Dentist.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Average_Dentist.png
-
 #begin 2D/Average_Dentist.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -73,18 +49,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/Chicken_With_Mortors.png
 
-#begin 2D/Chicken_With_Mortors.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Chicken_With_Mortors.png
-
 #begin 2D/Cupid.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -96,30 +60,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/Cupid.png
-
-#begin 2D/Cupid.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Cupid.png
-
-#begin 2D/Earl_Transparent.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Earl_Transparent.png
 
 #begin 2D/Earl_Transparent.png
 /importer:TextureImporter
@@ -193,18 +133,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/Fonts.png
 
-#begin 2D/Fonts.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Fonts.png
-
 #begin 2D/Funkotron_Scenery.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -216,30 +144,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/Funkotron_Scenery.png
-
-#begin 2D/Funkotron_Scenery.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Funkotron_Scenery.png
-
-#begin 2D/HUD_Display.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/HUD_Display.png
 
 #begin 2D/HUD_Display.png
 /importer:TextureImporter
@@ -277,18 +181,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/Jam_Out.png
 
-#begin 2D/Jam_Out.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Jam_Out.png
-
 #begin 2D/Land_Tilemap_Hopefully.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -300,30 +192,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/Land_Tilemap_Hopefully.png
-
-#begin 2D/Land_Tilemap_Hopefully.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Land_Tilemap_Hopefully.png
-
-#begin 2D/LawnMower_Man.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/LawnMower_Man.png
 
 #begin 2D/LawnMower_Man.png
 /importer:TextureImporter
@@ -349,18 +217,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/LemonadeStand.png
 
-#begin 2D/LemonadeStand.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/LemonadeStand.png
-
 #begin 2D/Lil_Devil.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -372,30 +228,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/Lil_Devil.png
-
-#begin 2D/Lil_Devil.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Lil_Devil.png
-
-#begin 2D/Mole_Dog.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Mole_Dog.png
 
 #begin 2D/Mole_Dog.png
 /importer:TextureImporter
@@ -421,18 +253,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/NerdHerd.png
 
-#begin 2D/NerdHerd.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/NerdHerd.png
-
 #begin 2D/OperaSinger.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -444,30 +264,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/OperaSinger.png
-
-#begin 2D/OperaSinger.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/OperaSinger.png
-
-#begin 2D/Phantom_Ice_Cream_Truck.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Phantom_Ice_Cream_Truck.png
 
 #begin 2D/Phantom_Ice_Cream_Truck.png
 /importer:TextureImporter
@@ -493,18 +289,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/SantaClaus.png
 
-#begin 2D/SantaClaus.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/SantaClaus.png
-
 #begin 2D/Shark.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -516,30 +300,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/Shark.png
-
-#begin 2D/Shark.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Shark.png
-
-#begin 2D/ToeJam_Transparent.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/ToeJam_Transparent.png
 
 #begin 2D/ToeJam_Transparent.png
 /importer:TextureImporter
@@ -565,18 +325,6 @@
 /processorParam:TextureFormat=Color
 /build:2D/ToeJam.png
 
-#begin 2D/ToeJam.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/ToeJam.png
-
 #begin 2D/Tornado.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -588,30 +336,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:2D/Tornado.png
-
-#begin 2D/Tornado.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Tornado.png
-
-#begin 2D/Wiseman.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Wiseman.png
 
 #begin 2D/Wiseman.png
 /importer:TextureImporter
@@ -637,15 +361,285 @@
 /processorParam:TextureFormat=Color
 /build:2D/Wizard.png
 
-#begin 2D/Wizard.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:2D/Wizard.png
+#begin Audio/01 - Toejam Jammin.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/01 - Toejam Jammin.mp3
+
+#begin Audio/01 - Toejam Jammin.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/01 - Toejam Jammin.mp3
+
+#begin Audio/02 - Big Earl Bump.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/02 - Big Earl Bump.mp3
+
+#begin Audio/03 - Rapmaster Rocket Racket.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/03 - Rapmaster Rocket Racket.mp3
+
+#begin Audio/04 - Funkotronic Beat.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/04 - Funkotronic Beat.mp3
+
+#begin Audio/05 - Alien Break Down.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/05 - Alien Break Down.mp3
+
+#begin Audio/06 - Toejam Slowjam.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/06 - Toejam Slowjam.mp3
+
+#begin Audio/Ahchoo!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Ahchoo!.wav
+
+#begin Audio/Aloha.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Aloha.wav
+
+#begin Audio/BigEarl!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/BigEarl!.wav
+
+#begin Audio/Bite.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Bite.wav
+
+#begin Audio/Boogeyman.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Boogeyman.wav
+
+#begin Audio/Boom.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Boom.wav
+
+#begin Audio/Burp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Burp.wav
+
+#begin Audio/CarrotMan.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/CarrotMan.wav
+
+#begin Audio/Chickens.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Chickens.wav
+
+#begin Audio/Clap.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Clap.wav
+
+#begin Audio/Cupid.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Cupid.wav
+
+#begin Audio/Dentist.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Dentist.wav
+
+#begin Audio/Hallelujah.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Hallelujah.wav
+
+#begin Audio/Horn.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Horn.wav
+
+#begin Audio/Jammin'.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Jammin'.wav
+
+#begin Audio/Mailbox.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Mailbox.wav
+
+#begin Audio/Meep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Meep.wav
+
+#begin Audio/Money!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Money!.wav
+
+#begin Audio/Money!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Money!.wav
+
+#begin Audio/OperaLady.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/OperaLady.wav
+
+#begin Audio/Randomizer.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Randomizer.wav
+
+#begin Audio/Rap!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Rap!.wav
+
+#begin Audio/Scratchin'.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Scratchin'.wav
+
+#begin Audio/shAka.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/shAka.wav
+
+#begin Audio/Sleeping.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Sleeping.wav
+
+#begin Audio/Smoosh.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Smoosh.wav
+
+#begin Audio/Sparkles.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Sparkles.wav
+
+#begin Audio/Splash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Splash.wav
+
+#begin Audio/Spring.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Spring.wav
+
+#begin Audio/Telephone.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Telephone.wav
+
+#begin Audio/ToeJam!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/ToeJam!.wav
+
+#begin Audio/TomatoLaunch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/TomatoLaunch.wav
+
+#begin Audio/WAKEUP!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/WAKEUP!.wav
+
+#begin Audio/WakeUp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/WakeUp.wav
+
+#begin Audio/Whoa!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Whoa!.wav
+
+#begin Audio/Yaaaaaaa!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Yaaaaaaa!.wav
+
+#begin Audio/YeahAlright!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/YeahAlright!.wav
+
+#begin Audio/Yeeheh!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Yeeheh!.wav
+
+#begin Audio/Yeouch! (Earl).wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Yeouch! (Earl).wav
+
+#begin Audio/Yeouch! (ToeJam).wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Yeouch! (ToeJam).wav
 

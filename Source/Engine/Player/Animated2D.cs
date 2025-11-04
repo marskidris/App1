@@ -2,13 +2,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using App1.Source.Engine.Items;
 
 namespace App1.Source.Engine;
 
 public class Animated2D
 {
     Texture2D texture;
-    Texture2D itemTexture;
     Vector3 position;
     Vector3 size;
     float scale = 1f;
@@ -18,9 +18,6 @@ public class Animated2D
     float rotation = 0f;
     float rotationSpeed = MathHelper.PiOver4;
     Rectangle[] frames;
-    Rectangle itemFrame;
-    Vector3[] itemPositions;
-    bool[] itemsCollected;
     int currentFrame;
     int direction = 1;
     float timer;
@@ -29,12 +26,13 @@ public class Animated2D
     Vector3 facingDirection;
     Vector3 playerPosition;
     float moveSpeed = 50f;
-    float pickupDistance = 100f;
     float patrolDistance = 100f;
     Vector3 startPosition;
     bool movingForward = true;
     
     KeyboardState previousKeyboardState;
+    
+    private PresentItems presentItems;
 
     public Animated2D(Texture2D texture, Vector3 position, Vector3 size)
     {
@@ -47,15 +45,6 @@ public class Animated2D
         frames[1] = new Rectangle(176, 204, 24, 36);
         frames[2] = new Rectangle(204, 206, 31, 34);
         frames[3] = new Rectangle(236, 210, 32, 30);
-
-        itemFrame = new Rectangle(137, 10, 15, 14);
-        
-        itemPositions = new Vector3[3];
-        itemPositions[0] = new Vector3(position.X + 150, position.Y, 0);
-        itemPositions[1] = new Vector3(position.X - 150, position.Y, 0);
-        itemPositions[2] = new Vector3(position.X, position.Y + 150, 0);
-        
-        itemsCollected = new bool[3];
         
         currentFrame = 0;
         timer = 0f;
@@ -65,7 +54,7 @@ public class Animated2D
         playerPosition = new Vector3(100, 100, 0);
         startPosition = position;
         
-        itemTexture = Globals.content.Load<Texture2D>("2D/items_scenery_tranparent");
+        presentItems = new PresentItems(position);
     }
 
     public void Update(GameTime gameTime)
@@ -159,18 +148,7 @@ public class Animated2D
             float distanceToPlayer = Vector3.Distance(position, playerPosition);
         }
         
-        for (int i = 0; i < itemPositions.Length; i++)
-        {
-            if (!itemsCollected[i])
-            {
-                float distanceToItem = Vector3.Distance(playerPosition, itemPositions[i]);
-                if (distanceToItem < pickupDistance)
-                {
-                    itemsCollected[i] = true;
-                    Console.WriteLine($"Item {i + 1} Collected");
-                }
-            }
-        }
+        presentItems.CheckCollisions(playerPosition);
     }
 
     public void SetPlayerPosition(Vector3 playerPos)
@@ -199,24 +177,6 @@ public class Animated2D
             SpriteEffects.None, 
             position.Z);
         
-        for (int i = 0; i < itemPositions.Length; i++)
-        {
-            if (!itemsCollected[i])
-            {
-                Vector2 itemPosition2D = new Vector2(itemPositions[i].X, itemPositions[i].Y);
-                Vector2 itemOrigin = new Vector2(itemFrame.Width / 2f, itemFrame.Height / 2f);
-                
-                spriteBatch.Draw(
-                    itemTexture,
-                    itemPosition2D,
-                    itemFrame,
-                    Color.White,
-                    0f,
-                    itemOrigin,
-                    2f,
-                    SpriteEffects.None,
-                    0f);
-            }
-        }
+        presentItems.Draw(spriteBatch);
     }
 }

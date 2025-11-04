@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using App1.Source.Engine.Audio;
 
 namespace App1.Source.Engine;
 
@@ -22,7 +23,7 @@ public class GameState
     private KeyboardState currentKeyboardState;
     
     private MenuScreen menuScreen;
-    private PresentsMenu presentsMenu;
+    private PresentsMenu _presentsMenu;
     private AnimatedLetters animatedLetters;
     private Map mapMenu;
     private Time gameTime;
@@ -39,12 +40,12 @@ public class GameState
     public void LoadContent()
     {
         menuScreen = new MenuScreen();
-        presentsMenu = new PresentsMenu();
+        _presentsMenu = new PresentsMenu();
         animatedLetters = new AnimatedLetters();
         mapMenu = new Map();
         
         menuScreen.LoadContent();
-        presentsMenu.LoadContent();
+        _presentsMenu.LoadContent();
         animatedLetters.LoadContent();
         mapMenu.LoadContent();
         
@@ -123,13 +124,16 @@ public class GameState
         
         if (previousState != CurrentState && CurrentState == GameStateType.PresentsMenu)
         {
-            presentsMenu.Activate();
+            _presentsMenu.Activate();
         }
         
         menuScreen.Update(gameTime);
-        presentsMenu.Update(gameTime);
+        _presentsMenu.Update(gameTime);
         animatedLetters.Update(gameTime);
         mapMenu.Update(gameTime);
+        
+        // Handle music playback based on game state
+        HandleMusicPlayback();
     }
     
     private bool IsInMenuState(GameStateType state)
@@ -209,7 +213,7 @@ public class GameState
                 Color.Black * 0.3f);
         }
         
-        presentsMenu.Draw(spriteBatch);
+        _presentsMenu.Draw(spriteBatch);
         
         animatedLetters.Draw(spriteBatch);
     }
@@ -261,5 +265,18 @@ public class GameState
     public MenuScreen GetMenuScreen()
     {
         return menuScreen;
+    }
+    
+    private void HandleMusicPlayback()
+    {
+        // Pause or resume music based on the game state
+        if (CurrentState == GameStateType.PausedMenu)
+        {
+            AudioState.Instance.PauseMusic();
+        }
+        else if (previousState == GameStateType.PausedMenu && CurrentState == GameStateType.Playing)
+        {
+            AudioState.Instance.ResumeMusic();
+        }
     }
 }
