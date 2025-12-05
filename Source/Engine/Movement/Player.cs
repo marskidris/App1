@@ -131,4 +131,44 @@ public class Player
 
 
     public Vector2 Position => position;
+    
+    // Collision properties
+    public bool IsActive { get; set; } = true;
+    
+    /// <summary>
+    /// Gets the bounding box for rectangle-based collision detection
+    /// </summary>
+    public Rectangle BoundingBox
+    {
+        get
+        {
+            return new Rectangle(
+                (int)position.X,
+                (int)position.Y,
+                (int)size.X,
+                (int)size.Y
+            );
+        }
+    }
+    
+    /// <summary>
+    /// Gets the center point for circle-based collision detection
+    /// </summary>
+    public Vector2 CircleCenter
+    {
+        get
+        {
+            return new Vector2(
+                position.X + size.X / 2,
+                position.Y + size.Y / 2
+            );
+        }
+    }
+    public float CircleRadius
+    {
+        get
+        {
+            return System.Math.Min(size.X, size.Y) / 2;
+        }
+    }
 }

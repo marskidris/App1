@@ -38,12 +38,12 @@ public class PresentsMenu
     {
         if (isFirstActivation)
         {
-            Console.WriteLine("Earl's Menu Open");
+            Console.WriteLine("ToeJam's Menu Open");
             isFirstActivation = false;
         }
         else
         {
-            Console.WriteLine("Earl's Menu Open");
+            Console.WriteLine("ToeJam's Menu Open");
         }
     }
     

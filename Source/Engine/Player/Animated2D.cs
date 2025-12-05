@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using App1.Source.Engine.Items;
+using App1.Source.Engine.Collision;
 
 namespace App1.Source.Engine;
 
@@ -33,6 +34,7 @@ public class Animated2D
     KeyboardState previousKeyboardState;
     
     private PresentItems presentItems;
+    private bool hasCollided = false; // Track if collision message already printed
 
     public Animated2D(Texture2D texture, Vector3 position, Vector3 size)
     {
@@ -154,6 +156,84 @@ public class Animated2D
     public void SetPlayerPosition(Vector3 playerPos)
     {
         playerPosition = playerPos;
+    }
+    
+    /// <summary>
+    /// Checks collision with player and prints message
+    /// </summary>
+    /// <param name="playerBoundingBox">Player's bounding box for rectangle collision</param>
+    /// <param name="playerCircleCenter">Player's circle center for circle collision</param>
+    /// <param name="playerCircleRadius">Player's circle radius</param>
+    public void CheckCollisionWithPlayer(Rectangle playerBoundingBox, Vector2 playerCircleCenter, float playerCircleRadius)
+    {
+        if (!IsActive) return;
+        
+        // Check rectangle collision
+        bool rectangleCollision = Collision2D.CheckRectangleCollision(BoundingBox, playerBoundingBox);
+        
+        // Check circle collision
+        bool circleCollision = Collision2D.CheckCircleCollision(CircleCenter, CircleRadius, playerCircleCenter, playerCircleRadius);
+        
+        // If collision detected and haven't printed message yet
+        if ((rectangleCollision || circleCollision) && !hasCollided)
+        {
+            Console.WriteLine("enemy encountered");
+            hasCollided = true;
+        }
+        
+        // Reset flag if no longer colliding
+        if (!rectangleCollision && !circleCollision && hasCollided)
+        {
+            hasCollided = false;
+        }
+    }
+    
+    // Collision properties
+    public bool IsActive { get; set; } = true;
+    
+    /// <summary>
+    /// Gets the bounding box for rectangle-based collision detection
+    /// </summary>
+    public Rectangle BoundingBox
+    {
+        get
+        {
+            Vector2 scaledSize = new Vector2(size.X, size.Y) * scale;
+            return new Rectangle(
+                (int)position.X,
+                (int)position.Y,
+                (int)scaledSize.X,
+                (int)scaledSize.Y
+            );
+        }
+    }
+    
+    /// <summary>
+    /// Gets the center point for circle-based collision detection
+    /// </summary>
+    public Vector2 CircleCenter
+    {
+        get
+        {
+            Vector2 scaledSize = new Vector2(size.X, size.Y) * scale;
+            return new Vector2(
+                position.X + scaledSize.X / 2,
+                position.Y + scaledSize.Y / 2
+            );
+        }
+    }
+    
+    /// <summary>
+    /// Gets the radius for circle-based collision detection
+    /// Uses the smaller dimension to ensure the circle fits within the sprite
+    /// </summary>
+    public float CircleRadius
+    {
+        get
+        {
+            Vector2 scaledSize = new Vector2(size.X, size.Y) * scale;
+            return System.Math.Min(scaledSize.X, scaledSize.Y) / 2;
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)

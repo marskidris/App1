@@ -11,9 +11,12 @@ public class AudioState
     private Song Jammin;
     private SoundEffect moneySoundEffect;
     private SoundEffectInstance moneySoundInstance;
+    private SoundEffect boogeymanSoundEffect;
+    private SoundEffectInstance boogeymanSoundInstance;
     private List<SoundEffectInstance> activeSoundInstances = new List<SoundEffectInstance>();
     private float originalMusicVolume = 1.0f;
     private bool isMoneySoundPlaying = false;
+    private bool isBoogeymanSoundPlaying = false;
     
     private static AudioState instance;
 
@@ -36,17 +39,17 @@ public class AudioState
         
         // Load the Money sound effect
         moneySoundEffect = content.Load<SoundEffect>("Audio/Money!");
+        
+        // Load the Boogeyman sound effect
+        boogeymanSoundEffect = content.Load<SoundEffect>("Audio/Boogeyman");
     }
 
     public void PlayBackgroundMusic()
     {
         if (Jammin != null)
         {
-            // Set the song to repeat
             MediaPlayer.IsRepeating = true;
-            // Set volume (0.0f to 1.0f)
             MediaPlayer.Volume = 1.0f;
-            // Play the song
             MediaPlayer.Play(Jammin);
         }
     }
@@ -68,7 +71,6 @@ public class AudioState
 
     public void SetVolume(float volume)
     {
-        // Clamp volume between 0.0 and 1.0
         MediaPlayer.Volume = MathHelper.Clamp(volume, 0.0f, 1.0f);
     }
     
@@ -79,7 +81,6 @@ public class AudioState
             return;
         }
         
-        // Store original volume and lower the music to 0.8
         originalMusicVolume = MediaPlayer.Volume;
         MediaPlayer.Volume = 0.8f;
         isMoneySoundPlaying = true;
@@ -92,7 +93,6 @@ public class AudioState
             }
         }
         
-        // Play the money sound at full volume
         moneySoundInstance = moneySoundEffect.CreateInstance();
         moneySoundInstance.Volume = 1.0f;
         moneySoundInstance.Play();
@@ -100,17 +100,48 @@ public class AudioState
         activeSoundInstances.Add(moneySoundInstance);
     }
     
+    public void PlayBoogeymanSound()
+    {
+        if (boogeymanSoundEffect == null)
+        {
+            return;
+        }
+        
+        originalMusicVolume = MediaPlayer.Volume;
+        MediaPlayer.Volume = 0.8f;
+        isBoogeymanSoundPlaying = true;
+        
+        foreach (var soundInstance in activeSoundInstances)
+        {
+            if (soundInstance.State == SoundState.Playing)
+            {
+                soundInstance.Volume = 0.8f;
+            }
+        }
+        
+        boogeymanSoundInstance = boogeymanSoundEffect.CreateInstance();
+        boogeymanSoundInstance.Volume = 1.0f;
+        boogeymanSoundInstance.Play();
+        
+        activeSoundInstances.Add(boogeymanSoundInstance);
+    }
+    
     public void Update()
     {
-        // Clean up stopped sound instances
         activeSoundInstances.RemoveAll(sound => sound.State == SoundState.Stopped);
         
-        // Restore music volume when money sound finishes
         if (isMoneySoundPlaying && moneySoundInstance != null && moneySoundInstance.State == SoundState.Stopped)
         {
             MediaPlayer.Volume = originalMusicVolume;
             isMoneySoundPlaying = false;
             moneySoundInstance = null;
+        }
+        
+        if (isBoogeymanSoundPlaying && boogeymanSoundInstance != null && boogeymanSoundInstance.State == SoundState.Stopped)
+        {
+            MediaPlayer.Volume = originalMusicVolume;
+            isBoogeymanSoundPlaying = false;
+            boogeymanSoundInstance = null;
         }
     }
 }
