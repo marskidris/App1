@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Splash.wav</SourceFile>
+  <SourceTime>2025-10-18T15:42:12.7536595-05:00</SourceTime>
+  <DestFile>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/bin/Windows/Content/Audio/Splash.xnb</DestFile>
+  <DestTime>2025-11-03T19:45:55.8502847-06:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2025-06-02T05:31:02-05:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2025-06-02T05:31:02-05:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
