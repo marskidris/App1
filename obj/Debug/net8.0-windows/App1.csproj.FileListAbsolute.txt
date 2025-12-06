@@ -1,37 +1,9 @@
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.exe
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.deps.json
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.runtimeconfig.json
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.pdb
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\MonoGame.Framework.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Direct2D1.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Direct3D11.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Direct3D9.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.DXGI.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Mathematics.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.MediaFoundation.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.XAudio2.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.XInput.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.csproj.AssemblyReference.cache
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.AssemblyInfoInputs.cache
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.AssemblyInfo.cs
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.csproj.CoreCompileInputs.cache
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.csproj.Up2Date
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\refint\App1.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.pdb
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.genruntimeconfig.cache
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\ref\App1.dll
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\ToeJam_Transparent.xnb
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Earl_Transparent.xnb
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.sourcelink.json
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\AngryBees.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Average_Dentist.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Chicken_With_Mortors.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Cupid.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Earl.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Earl_Transparent.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Elevator.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\farmhouse.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\floor_path_tiles.xnb
@@ -51,6 +23,87 @@ C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\C
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\SantaClaus.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Shark.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\ToeJam.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\ToeJam_Transparent.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Tornado.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Wiseman.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\2D\Wizard.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\01 - Toejam Jammin.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\01 - Toejam Jammin.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\02 - Big Earl Bump.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\02 - Big Earl Bump.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\03 - Rapmaster Rocket Racket.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\03 - Rapmaster Rocket Racket.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\04 - Funkotronic Beat.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\04 - Funkotronic Beat.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\05 - Alien Break Down.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\05 - Alien Break Down.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\06 - Toejam Slowjam.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\06 - Toejam Slowjam.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Ahchoo!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Aloha.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\BigEarl!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Bite.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Boogeyman.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Boom.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Burp.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\CarrotMan.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Chickens.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Clap.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Cupid.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Dentist.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Hallelujah.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Horn.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Jammin'.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Mailbox.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Meep.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Money!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\OperaLady.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Randomizer.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Rap!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Scratchin'.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\shAka.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Sleeping.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Smoosh.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Sparkles.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Splash.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Spring.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Telephone.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\ToeJam!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\TomatoLaunch.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\WAKEUP!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\WakeUp.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Whoa!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Yaaaaaaa!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\YeahAlright!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Yeeheh!.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Yeouch! (Earl).xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Yeouch! (ToeJam).xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\GameFont.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.exe
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.deps.json
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.runtimeconfig.json
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\App1.pdb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\MonoGame.Framework.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Direct2D1.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Direct3D11.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Direct3D9.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.DXGI.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.Mathematics.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.MediaFoundation.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.XAudio2.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\SharpDX.XInput.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\mgcb.tool.restore
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.csproj.AssemblyReference.cache
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.AssemblyInfoInputs.cache
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.AssemblyInfo.cs
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.csproj.CoreCompileInputs.cache
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.sourcelink.json
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.csproj.Up2Date
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\refint\App1.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.pdb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.genruntimeconfig.cache
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\ref\App1.dll

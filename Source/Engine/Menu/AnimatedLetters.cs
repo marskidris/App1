@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace App1.Source.Engine;
+namespace App1.Source.Engine.Menu;
 
 public class AnimatedLetters
 {
@@ -117,8 +117,8 @@ public class AnimatedLetters
             }
             
             // Pulsing scale effect
-            float pulseEffect = (float)Math.Sin(timer * 2 + i) * 0.1f;
-            letters[i].Scale = Math.Max(0.3f, 0.8f + pulseEffect);
+            float pulseEffect = (float)System.Math.Sin(timer * 2 + i) * 0.1f;
+            letters[i].Scale = System.Math.Max(0.3f, 0.8f + pulseEffect);
         }
         
         // Change target positions periodically
@@ -158,4 +158,3 @@ public class AnimatedLetters
         }
     }
 }
-

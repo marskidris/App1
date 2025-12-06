@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Chicken_With_Mortors.png</SourceFile>
-  <SourceTime>2025-09-02T12:14:00.0942121-07:00</SourceTime>
+  <SourceTime>2025-09-02T14:14:00.0942121-05:00</SourceTime>
   <DestFile>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/bin/Windows/Content/2D/Chicken_With_Mortors.xnb</DestFile>
-  <DestTime>2025-09-14T14:17:46.6082073-07:00</DestTime>
+  <DestTime>2025-12-05T14:45:19.8185467-06:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2025-06-02T03:31:02-07:00</ImporterTime>
+  <ImporterTime>2025-06-02T05:31:02-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2025-06-02T03:31:02-07:00</ProcessorTime>
+  <ProcessorTime>2025-06-02T05:31:02-05:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

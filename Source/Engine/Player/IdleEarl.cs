@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace App1.Source.Engine;
+namespace App1.Source.Engine.Player;
 
 public class IdleEarl
 {

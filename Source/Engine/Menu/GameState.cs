@@ -1,8 +1,9 @@
+using App1.Source.Engine.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace App1.Source.Engine;
+namespace App1.Source.Engine.Menu;
 
 public enum GameStateType
 {

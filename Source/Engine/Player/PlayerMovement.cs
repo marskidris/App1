@@ -1,18 +1,22 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using App1.Source.Engine.Movement;
 
-namespace App1.Source.Engine
+namespace App1.Source.Engine.Player
 {
     public class PlayerMovement
     {
         private Player _player;
         private KeyboardState _previousKeyboardState;
-        private float _speed = 150f;
+        private MovementState _currentState;
 
         public PlayerMovement(Player player)
         {
             _player = player;
             _previousKeyboardState = Keyboard.GetState();
+            _currentState = new WalkingState(player);
+            Console.WriteLine("Walking State is Active");
         }
 
         public void Update(GameTime gameTime)
@@ -20,28 +24,84 @@ namespace App1.Source.Engine
             KeyboardState currentKeyboardState = Keyboard.GetState();
             Vector2 velocity = Vector2.Zero;
             
+            bool rKeyPressed = currentKeyboardState.IsKeyDown(Keys.R) && !_previousKeyboardState.IsKeyDown(Keys.R);
+            bool eKeyPressed = currentKeyboardState.IsKeyDown(Keys.E) && !_previousKeyboardState.IsKeyDown(Keys.E);
+
+            if (eKeyPressed)
+            {
+                if (_currentState is SneakState)
+                {
+                    _currentState = new WalkingState(_player);
+                    _player.ResetAnimation();
+                    _player.SetAnimationSpeed(0.1f);
+                    _player.SetMovementState(false, false);
+                    Console.WriteLine("Walking State is Active");
+                }
+                else
+                {
+                    _currentState = new SneakState(_player);
+                    _player.ResetAnimation();
+                    _player.SetAnimationSpeed(0.2f);
+                    _player.SetMovementState(false, true);
+                    Console.WriteLine("Sneak State is Active");
+                }
+            }
+            else if (rKeyPressed)
+            {
+                if (_currentState is WalkingState)
+                {
+                    _currentState = new RunningState(_player);
+                    _player.ResetAnimation();
+                    _player.SetAnimationSpeed(0.05f);
+                    _player.SetMovementState(true, false);
+                    Console.WriteLine("Running State is Active");
+                }
+                else if (_currentState is RunningState)
+                {
+                    _currentState = new WalkingState(_player);
+                    _player.ResetAnimation();
+                    _player.SetAnimationSpeed(0.1f);
+                    _player.SetMovementState(false, false);
+                    Console.WriteLine("Walking State is Active");
+                }
+                else if (_currentState is SneakState)
+                {
+                    _currentState = new RunningState(_player);
+                    _player.ResetAnimation();
+                    _player.SetAnimationSpeed(0.05f);
+                    _player.SetMovementState(true, false);
+                    Console.WriteLine("Running State is Active");
+                }
+            }
+            
+            _currentState.HandleInput(currentKeyboardState, _previousKeyboardState, gameTime);
+            
+            float currentSpeed = _currentState.GetSpeed();
+            
             if (currentKeyboardState.IsKeyDown(Keys.W))
             {
-                velocity.Y = -_speed;
+                velocity.Y = -currentSpeed;
             }
             if (currentKeyboardState.IsKeyDown(Keys.S))
             {
-                velocity.Y = _speed;
+                velocity.Y = currentSpeed;
             }
             if (currentKeyboardState.IsKeyDown(Keys.A))
             {
-                velocity.X = -_speed;
+                velocity.X = -currentSpeed;
             }
             if (currentKeyboardState.IsKeyDown(Keys.D))
             {
-                velocity.X = _speed;
+                velocity.X = currentSpeed;
             }
 
             if (velocity.X != 0 && velocity.Y != 0)
             {
                 velocity.Normalize();
-                velocity *= _speed;
+                velocity *= currentSpeed;
             }
+
+            _currentState.UpdateMovement(velocity, gameTime);
 
             if (velocity.Y < 0)
             {
@@ -74,12 +134,11 @@ namespace App1.Source.Engine
 
         public void SetSpeed(float newSpeed)
         {
-            _speed = newSpeed;
         }
 
         public float GetSpeed()
         {
-            return _speed;
+            return _currentState.GetSpeed();
         }
     }
 }
