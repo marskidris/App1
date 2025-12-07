@@ -1,4 +1,4 @@
-﻿﻿using App1.Source;
+﻿﻿﻿using App1.Source;
 using App1.Source.Engine;
 using App1.Source.Engine.Menu;
 using App1.Source.Engine.Player;
@@ -21,6 +21,7 @@ public class Main : Game
     PlayerMovement playerMovement;
     GameState gameState;
     Map map;
+    Camera camera;
     private bool isMapActive = false;
     private Microsoft.Xna.Framework.Input.KeyboardState _previousKeyboardState;
 
@@ -81,8 +82,9 @@ public class Main : Game
         string selectedCharacter = gameState?.SelectedCharacter ?? "Earl";
         string texturePath = CharacterFramesFactory.GetTexturePath(selectedCharacter);
         
-        player = new Player(texturePath, new Vector2(640, 360), new Vector2(150, 150), selectedCharacter);
+        player = new Player(texturePath, new Vector2(0, 0), new Vector2(150, 150), selectedCharacter);
         playerMovement = new PlayerMovement(player);
+        camera = new Camera(GraphicsDevice.Viewport);
 
         tornadoTexture = Content.Load<Texture2D>("2D/Tornado");
         itemTexture = Content.Load<Texture2D>("2D/items_scenery_tranparent");
@@ -183,6 +185,8 @@ public class Main : Game
             gameTimer.Update(gameTime);
 
             playerMovement.Update(gameTime);
+            
+            camera.Follow(player.Position);
 
             Rectangle playerBounds = new Rectangle(
                 (int)player.Position.X,
@@ -284,9 +288,42 @@ public class Main : Game
         }
 
         gameState.Draw(Globals.spriteBatch);
+        Globals.spriteBatch.End();
         
         if (gameState.ShowGameContent())
         {
+            Matrix? transformMatrix = camera?.GetTransformMatrix();
+            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, transformMatrix);
+
+            foreach (var present in presents)
+            {
+                present.Draw(Globals.spriteBatch);
+            }
+
+            foreach (var tornado in tornados)
+            {
+                if (!tornado.IsRemoved)
+                    tornado.Draw(Globals.spriteBatch);
+            }
+
+            bool showPlayer = true;
+            if (playerCaptured)
+            {
+                showPlayer = false;
+            }
+            else if (invincibilityTimer > 0)
+            {
+                showPlayer = ((int)(invincibilityTimer * 10) % 2) == 0;
+            }
+            
+            if (showPlayer)
+            {
+                player.Draw();
+            }
+
+            Globals.spriteBatch.End();
+
+            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             if (player != null && HUDTexture != null)
             {
                 Rectangle healthSource = new Rectangle(56, 160, 32, 3);
@@ -315,40 +352,14 @@ public class Main : Game
                     Globals.spriteBatch.Draw(HUDTexture, destRectFill, healthSource, Color.White);
                 }
             }
-
-            foreach (var present in presents)
-            {
-                present.Draw(Globals.spriteBatch);
-            }
-
-            foreach (var tornado in tornados)
-            {
-                if (!tornado.IsRemoved)
-                    tornado.Draw(Globals.spriteBatch);
-            }
-
-            bool showPlayer = true;
-            if (playerCaptured)
-            {
-                showPlayer = false;
-            }
-            else if (invincibilityTimer > 0)
-            {
-                showPlayer = ((int)(invincibilityTimer * 10) % 2) == 0;
-            }
             
-            if (showPlayer)
+            if (map != null)
             {
-                player.Draw();
+                map.Draw(Globals.spriteBatch);
             }
-        }
-        
-        if (map != null)
-        {
-            map.Draw(Globals.spriteBatch);
-        }
 
-        Globals.spriteBatch.End();
+            Globals.spriteBatch.End();
+        }
 
         base.Draw(gameTime);
     }
