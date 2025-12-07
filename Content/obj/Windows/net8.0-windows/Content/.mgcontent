@@ -4,7 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/GameFont.spritefont</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/AngryBees.png</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Average_Dentist.png</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Chicken_With_Mortors.png</File>
@@ -34,8 +33,17 @@
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Tornado.png</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Wiseman.png</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Wizard.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/01 - Toejam Jammin.mp3</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Boogeyman.wav</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Jammin'.wav</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Money!.wav</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/GameFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

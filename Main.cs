@@ -1,13 +1,15 @@
-﻿﻿﻿﻿using App1.Source;
+﻿﻿using App1.Source;
 using App1.Source.Engine;
 using App1.Source.Engine.Menu;
 using App1.Source.Engine.Player;
 using App1.Source.Engine.Enemy;
 using App1.Source.Engine.Items;
+using App1.Source.Engine.Audio;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System;
 
 namespace App1;
 
@@ -18,35 +20,40 @@ public class Main : Game
     Player player;
     PlayerMovement playerMovement;
     GameState gameState;
+    Map map;
+    private bool isMapActive = false;
+    private Microsoft.Xna.Framework.Input.KeyboardState _previousKeyboardState;
 
     List<Enemy> tornados;
     List<Item> presents;
     Texture2D tornadoTexture;
     Texture2D itemTexture;
 
-    bool playerCaught = false;
-    float restartTimer = 0f;
-    const float RestartDelay = 10f;
     SpriteFont font;
-    Enemy catchingTornado;
     Time gameTimer;
+    private Texture2D HUDTexture;
+    private bool needsGameInit = true;
+    private float invincibilityTimer = 0f;
+    private const float InvincibilityDuration = 3f;
+    private bool playerCaptured = false;
+    private float capturedTimer = 0f;
+    private const float CapturedDuration = 5f;
+    private Enemy capturingTornado = null;
 
     public Main()
     {
         graphics = new GraphicsDeviceManager(this);
         Globals.graphics = graphics;
-        // graphics.IsFullScreen = true;
         graphics.PreferredBackBufferWidth = 1280;
         graphics.PreferredBackBufferHeight = 720;
         graphics.ApplyChanges();
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+        _previousKeyboardState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-        
         base.Initialize();
     }
 
@@ -57,16 +64,24 @@ public class Main : Game
 
         font = Content.Load<SpriteFont>("GameFont");
 
-        // Initialize game state system
-        gameState = new GameState();
-        gameState.LoadContent();
+        AudioState.Instance.LoadContent(Content);
+        AudioState.Instance.PlayBackgroundMusic();
 
-        InitializeGame();
-    }
+        HUDTexture = Content.Load<Texture2D>("2D/HUD_Display");
+
+        map = new Map();
+        map.LoadContent();
+         
+         gameState = new GameState();
+         gameState.LoadContent();
+     }
 
     private void InitializeGame()
     {
-        player = new Player("2D/Earl_Transparent", new Vector2(640, 360), new Vector2(150, 150));
+        string selectedCharacter = gameState?.SelectedCharacter ?? "Earl";
+        string texturePath = CharacterFramesFactory.GetTexturePath(selectedCharacter);
+        
+        player = new Player(texturePath, new Vector2(640, 360), new Vector2(150, 150), selectedCharacter);
         playerMovement = new PlayerMovement(player);
 
         tornadoTexture = Content.Load<Texture2D>("2D/Tornado");
@@ -107,38 +122,65 @@ public class Main : Game
             tornados.Add(tornado);
         }
 
-        playerCaught = false;
-        restartTimer = 0f;
-        catchingTornado = null;
         gameTimer = new Time();
     }
 
     protected override void Update(GameTime gameTime)
     {
+        var currentKeyboardState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
+        
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            Keyboard.GetState().IsKeyDown(Keys.Escape))
+            currentKeyboardState.IsKeyDown(Keys.Escape))
             Exit();
-
+        
+        if (gameState != null && gameState.QuitRequested)
+        {
+            Exit();
+        }
+        
+        if (gameState != null && gameState.ReturnToTitleRequested)
+        {
+            needsGameInit = true;
+            playerCaptured = false;
+            capturedTimer = 0f;
+            capturingTornado = null;
+            invincibilityTimer = 0f;
+            isMapActive = false;
+            map?.Deactivate();
+            gameState.ClearReturnToTitleRequest();
+        }
+ 
+        bool mPressed = currentKeyboardState.IsKeyDown(Keys.M) && !_previousKeyboardState.IsKeyDown(Keys.M);
+        if (mPressed)
+        {
+            if (!isMapActive)
+            {
+                gameState?.ForcePlaying();
+                 if (gameState != null) gameState.SuppressPauseOverlay = true;
+                gameState?.PauseGameplay();
+                map.Activate();
+                isMapActive = true;
+            }
+            else
+            {
+                map.Deactivate();
+                gameState?.ResumeGameplay();
+                if (gameState != null) gameState.SuppressPauseOverlay = false;
+                isMapActive = false;
+            }
+         }
+        
         gameState.Update(gameTime);
+
+        if (gameState.IsPlaying() && needsGameInit)
+        {
+            InitializeGame();
+            needsGameInit = false;
+        }
 
         if (gameState.IsPlaying())
         {
-            // Update game timer (prints to console every second)
             gameTimer.Update(gameTime);
-            
-            if (playerCaught)
-            {
-                restartTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (catchingTornado != null)
-                {
-                    catchingTornado.Update(gameTime);
-                }
-                if (restartTimer >= RestartDelay)
-                {
-                    InitializeGame();
-                }
-                return;
-            }
 
             playerMovement.Update(gameTime);
 
@@ -154,18 +196,18 @@ public class Main : Game
                 if (present.IsActive && present.BoundingBox.Intersects(playerBounds))
                 {
                     present.IsActive = false;
+                    AudioState.Instance.PlayMoneySoundWithVolumeAdjustment();
                 }
             }
 
-            // Check if player presses Space to eliminate nearby enemies (requirement 1c)
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (currentKeyboardState.IsKeyDown(Keys.Space))
             {
                 foreach (var tornado in tornados)
                 {
                     if (!tornado.IsRemoved && tornado.IsAlive)
                     {
                         float distance = Vector2.Distance(player.Position, tornado.Position);
-                        if (distance < 100f) // Attack range
+                        if (distance < 100f)
                         {
                             tornado.TakeDamage();
                             System.Console.WriteLine($"[Enemy {tornado.EnemyId}] Eliminated by player!");
@@ -174,24 +216,57 @@ public class Main : Game
                 }
             }
 
-            foreach (var tornado in tornados)
+            if (invincibilityTimer > 0)
             {
-                if (!tornado.IsRemoved)
-                {
-                    tornado.Update(gameTime);
+                invincibilityTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
-                    if (tornado.BoundingBox.Intersects(playerBounds))
+            if (playerCaptured)
+            {
+                capturedTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                
+                if (capturingTornado != null && !capturingTornado.IsRemoved)
+                {
+                    capturingTornado.Update(gameTime);
+                }
+                
+                if (capturedTimer >= CapturedDuration)
+                {
+                    int damage = player.Health.MaxHealth / 2;
+                    player.Health.TakeDamage(damage);
+                    playerCaptured = false;
+                    capturedTimer = 0f;
+                    if (capturingTornado != null)
                     {
-                        playerCaught = true;
-                        catchingTornado = tornado;
-                        tornado.TakeDamage(); // Trigger Dead state
-                        break;
+                        capturingTornado.IsRemoved = true;
+                    }
+                    capturingTornado = null;
+                    invincibilityTimer = InvincibilityDuration;
+                }
+            }
+            else
+            {
+                foreach (var tornado in tornados)
+                {
+                    if (!tornado.IsRemoved)
+                    {
+                        tornado.Update(gameTime);
+
+                        if (invincibilityTimer <= 0 && tornado.BoundingBox.Intersects(playerBounds))
+                        {
+                            playerCaptured = true;
+                            capturedTimer = 0f;
+                            capturingTornado = tornado;
+                            capturingTornado.ForceAlertFrames();
+                            break;
+                        }
                     }
                 }
             }
         }
         
         base.Update(gameTime);
+        _previousKeyboardState = currentKeyboardState;
     }
 
     protected override void Draw(GameTime gameTime)
@@ -200,12 +275,47 @@ public class Main : Game
 
         Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
         
-        // Draw game state screens (start screen, pause screen)
+        if (isMapActive && map != null)
+        {
+            map.Draw(Globals.spriteBatch);
+            Globals.spriteBatch.End();
+            base.Draw(gameTime);
+            return;
+        }
+
         gameState.Draw(Globals.spriteBatch);
         
-        // Only draw game content when playing
         if (gameState.ShowGameContent())
         {
+            if (player != null && HUDTexture != null)
+            {
+                Rectangle healthSource = new Rectangle(56, 160, 32, 3);
+                int destX = 10;
+                int destY = 50;
+                int destWidth = 160;
+                int destHeight = 12;
+
+                Globals.spriteBatch.DrawString(font, "Health", new Vector2(destX, 10), Color.White);
+
+                Rectangle destRectBg = new Rectangle(destX, destY, destWidth, destHeight);
+                Globals.spriteBatch.Draw(HUDTexture, destRectBg, healthSource, Color.DarkGray);
+
+                float healthPercent = 1f;
+                if (player.Health != null && player.Health.MaxHealth > 0)
+                {
+                    healthPercent = (float)player.Health.CurrentHealth / (float)player.Health.MaxHealth;
+                    if (healthPercent < 0f) healthPercent = 0f;
+                    if (healthPercent > 1f) healthPercent = 1f;
+                }
+
+                int filledWidth = (int)(destWidth * healthPercent);
+                if (filledWidth > 0)
+                {
+                    Rectangle destRectFill = new Rectangle(destX, destY, filledWidth, destHeight);
+                    Globals.spriteBatch.Draw(HUDTexture, destRectFill, healthSource, Color.White);
+                }
+            }
+
             foreach (var present in presents)
             {
                 present.Draw(Globals.spriteBatch);
@@ -217,39 +327,27 @@ public class Main : Game
                     tornado.Draw(Globals.spriteBatch);
             }
 
-
-            if (!playerCaught)
+            bool showPlayer = true;
+            if (playerCaptured)
+            {
+                showPlayer = false;
+            }
+            else if (invincibilityTimer > 0)
+            {
+                showPlayer = ((int)(invincibilityTimer * 10) % 2) == 0;
+            }
+            
+            if (showPlayer)
             {
                 player.Draw();
             }
-
-            if (playerCaught)
-            {
-                if (catchingTornado != null)
-                {
-                    catchingTornado.Draw(Globals.spriteBatch);
-                }
-
-                // Display "Player Captured!" message
-                string capturedText = "PLAYER CAPTURED!";
-                Vector2 capturedSize = font.MeasureString(capturedText);
-                Vector2 capturedPos = new Vector2(
-                    (graphics.PreferredBackBufferWidth - capturedSize.X) / 2,
-                    60
-                );
-                Globals.spriteBatch.DrawString(font, capturedText, capturedPos, Color.Red);
-
-                int secondsLeft = (int)(RestartDelay - restartTimer) + 1;
-                string countdownText = $"Restarting in {secondsLeft}...";
-                Vector2 textSize = font.MeasureString(countdownText);
-                Vector2 textPos = new Vector2(
-                    (graphics.PreferredBackBufferWidth - textSize.X) / 2,
-                    100
-                );
-                Globals.spriteBatch.DrawString(font, countdownText, textPos, Color.Red);
-            }
         }
         
+        if (map != null)
+        {
+            map.Draw(Globals.spriteBatch);
+        }
+
         Globals.spriteBatch.End();
 
         base.Draw(gameTime);

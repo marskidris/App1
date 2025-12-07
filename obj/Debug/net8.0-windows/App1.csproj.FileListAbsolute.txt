@@ -43,7 +43,6 @@ C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\C
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Aloha.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\BigEarl!.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Bite.xnb
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Boogeyman.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Boom.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Burp.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\CarrotMan.xnb
@@ -56,7 +55,6 @@ C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\C
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Jammin'.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Mailbox.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Meep.xnb
-C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Money!.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\OperaLady.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Randomizer.xnb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Rap!.xnb
@@ -107,3 +105,6 @@ C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\r
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.pdb
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\App1.genruntimeconfig.cache
 C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\obj\Debug\net8.0-windows\ref\App1.dll
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Boogeyman.xnb
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Jammin'.wma
+C:\Users\Shadow\Desktop\MonoGame\MonotTest2\App1\App1\bin\Debug\net8.0-windows\Content\Audio\Money!.xnb

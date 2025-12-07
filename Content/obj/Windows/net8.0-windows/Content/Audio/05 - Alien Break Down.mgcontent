@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/05 - Alien Break Down.mp3</SourceFile>
+  <SourceTime>2025-10-28T12:31:45.8384942-05:00</SourceTime>
+  <DestFile>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/bin/Windows/Content/Audio/05 - Alien Break Down.xnb</DestFile>
+  <DestTime>2025-11-03T19:45:51.7282861-06:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2025-06-02T05:31:02-05:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2025-06-02T05:31:02-05:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/bin/Windows/Content/Audio/05 - Alien Break Down.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

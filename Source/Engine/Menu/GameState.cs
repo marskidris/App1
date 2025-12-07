@@ -18,9 +18,35 @@ public class GameState
     private KeyboardState previousKeyboardState;
     private KeyboardState currentKeyboardState;
     
-    // Menu screen components
-    private MenuScreen menuScreen;
+    private TitleScreen titleScreen;
+    private Menu pauseMenu;
     private AnimatedLetters animatedLetters;
+    public bool SuppressPauseOverlay { get; set; } = false;
+    private bool gameplayPaused = false;
+    
+    public bool QuitRequested { get; private set; } = false;
+    public bool ReturnToTitleRequested { get; private set; } = false;
+    public string SelectedCharacter { get; private set; } = null;
+
+    public void PauseGameplay()
+    {
+        gameplayPaused = true;
+    }
+
+    public void ResumeGameplay()
+    {
+        gameplayPaused = false;
+    }
+    
+    public void ClearReturnToTitleRequest()
+    {
+        ReturnToTitleRequested = false;
+    }
+    
+    public void ForcePlaying()
+    {
+        CurrentState = GameStateType.Playing;
+    }
     
     public GameState()
     {
@@ -28,14 +54,27 @@ public class GameState
         previousKeyboardState = Keyboard.GetState();
         currentKeyboardState = Keyboard.GetState();
     }
+
+    public void Pause()
+    {
+        if (CurrentState == GameStateType.Playing)
+            CurrentState = GameStateType.PausedMenu;
+    }
+
+    public void Resume()
+    {
+        if (CurrentState == GameStateType.PausedMenu)
+            CurrentState = GameStateType.Playing;
+    }
     
     public void LoadContent()
     {
-        // Initialize menu screen and animated letters
-        menuScreen = new MenuScreen();
+        titleScreen = new TitleScreen();
+        pauseMenu = new Menu();
         animatedLetters = new AnimatedLetters();
         
-        menuScreen.LoadContent();
+        titleScreen.LoadContent();
+        pauseMenu.LoadContent();
         animatedLetters.LoadContent();
     }
     
@@ -44,36 +83,57 @@ public class GameState
         previousKeyboardState = currentKeyboardState;
         currentKeyboardState = Keyboard.GetState();
         
-        // Handle spacebar input for state transitions
-        bool spacePressed = currentKeyboardState.IsKeyDown(Keys.Space) && 
-                           !previousKeyboardState.IsKeyDown(Keys.Space);
-        
-        switch (CurrentState)
+        if (CurrentState == GameStateType.StartScreen)
         {
-            case GameStateType.StartScreen:
-                if (spacePressed)
-                {
-                    CurrentState = GameStateType.Playing;
-                }
-                break;
-                
-            case GameStateType.Playing:
-                if (spacePressed)
-                {
-                    CurrentState = GameStateType.PausedMenu;
-                }
-                break;
-                
-            case GameStateType.PausedMenu:
-                if (spacePressed)
-                {
-                    CurrentState = GameStateType.Playing;
-                }
-                break;
+            titleScreen.Update(gameTime);
+            
+            if (titleScreen.QuitRequested)
+            {
+                QuitRequested = true;
+            }
+            
+            if (titleScreen.GameStartRequested)
+            {
+                CurrentState = GameStateType.Playing;
+                SelectedCharacter = titleScreen.SelectedCharacter;
+            }
+        }
+        else if (CurrentState == GameStateType.PausedMenu)
+        {
+            pauseMenu.Update(gameTime);
+            
+            if (pauseMenu.ResumeRequested)
+            {
+                pauseMenu.Deactivate();
+                CurrentState = GameStateType.Playing;
+            }
+            
+            if (pauseMenu.ReturnToTitleRequested)
+            {
+                pauseMenu.Deactivate();
+                titleScreen.Reset();
+                SelectedCharacter = null;
+                ReturnToTitleRequested = true;
+                CurrentState = GameStateType.StartScreen;
+            }
+            
+            if (pauseMenu.QuitRequested)
+            {
+                QuitRequested = true;
+            }
+        }
+        else if (CurrentState == GameStateType.Playing)
+        {
+            bool spacePressed = currentKeyboardState.IsKeyDown(Keys.Space) && 
+                               !previousKeyboardState.IsKeyDown(Keys.Space);
+            
+            if (spacePressed)
+            {
+                pauseMenu.Activate();
+                CurrentState = GameStateType.PausedMenu;
+            }
         }
         
-        // Update animated components
-        menuScreen.Update(gameTime);
         animatedLetters.Update(gameTime);
     }
     
@@ -82,7 +142,8 @@ public class GameState
         switch (CurrentState)
         {
             case GameStateType.StartScreen:
-                DrawStartScreen(spriteBatch);
+                if (!SuppressPauseOverlay)
+                    DrawStartScreen(spriteBatch);
                 break;
                 
             case GameStateType.Playing:
@@ -90,14 +151,15 @@ public class GameState
                 break;
                 
             case GameStateType.PausedMenu:
-                DrawPauseMenu(spriteBatch);
+                // Only draw the full-screen pause menu if not suppressed (e.g., when showing map overlay)
+                if (!SuppressPauseOverlay)
+                    DrawPauseMenu(spriteBatch);
                 break;
         }
     }
     
     private void DrawStartScreen(SpriteBatch spriteBatch)
     {
-        // Clear with dark background
         var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
         Texture2D pixel = CreatePixelTexture();
         if (pixel != null)
@@ -106,29 +168,14 @@ public class GameState
                 Color.Black * 0.8f);
         }
         
-        // Draw animated menu screen elements
-        menuScreen.Draw(spriteBatch);
+        titleScreen.Draw(spriteBatch);
         
-        // Draw animated letters on top
         animatedLetters.Draw(spriteBatch);
     }
     
     private void DrawPauseMenu(SpriteBatch spriteBatch)
     {
-        // Draw semi-transparent overlay
-        var viewport = Globals.spriteBatch.GraphicsDevice.Viewport;
-        Texture2D pixel = CreatePixelTexture();
-        if (pixel != null)
-        {
-            spriteBatch.Draw(pixel, new Rectangle(0, 0, viewport.Width, viewport.Height), 
-                Color.Black * 0.7f);
-        }
-        
-        // Draw animated menu screen elements
-        menuScreen.Draw(spriteBatch);
-        
-        // Draw animated letters on top
-        animatedLetters.Draw(spriteBatch);
+        pauseMenu.Draw(spriteBatch);
     }
     
     private Texture2D CreatePixelTexture()
@@ -147,12 +194,12 @@ public class GameState
     
     public bool IsPlaying()
     {
-        return CurrentState == GameStateType.Playing;
+        return CurrentState == GameStateType.Playing && !gameplayPaused;
     }
     
     public bool ShowGameContent()
     {
-        return CurrentState == GameStateType.Playing;
+        return CurrentState == GameStateType.Playing && !gameplayPaused;
     }
     
     public bool IsInMenu()

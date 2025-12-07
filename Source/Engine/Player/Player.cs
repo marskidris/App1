@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.IO;
-using App1.Source.Engine.Player.Earl;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace App1.Source.Engine.Player
@@ -13,7 +12,8 @@ namespace App1.Source.Engine.Player
         Texture2D texture;
         Vector2 position;
         Vector2 size;
-        Earl.Earl earlFrames;
+        ICharacterFrames characterFrames;
+        CharacterType characterType;
         int currentFrame;
         int direction = 1;
         float timer;
@@ -21,11 +21,15 @@ namespace App1.Source.Engine.Player
         bool isMoving = false;
         bool isRunning = false;
         bool isSneaking = false;
+        // Player health
+        private PlayerHealth health;
 
-        public Player(string texturePath, Vector2 position, Vector2 size)
+        public Player(string texturePath, Vector2 position, Vector2 size, CharacterType characterType = CharacterType.Earl)
         {
             this.position = position;
             this.size = size;
+            this.characterType = characterType;
+            health = new PlayerHealth(100);
             
             try
             {
@@ -45,9 +49,23 @@ namespace App1.Source.Engine.Player
                 }
             }
             
-            earlFrames = new Earl.Earl();
+            characterFrames = CharacterFramesFactory.Create(characterType);
             currentFrame = 0;
             timer = 0f;
+        }
+
+        public Player(string texturePath, Vector2 position, Vector2 size, string characterName)
+            : this(texturePath, position, size, ParseCharacterType(characterName))
+        {
+        }
+
+        private static CharacterType ParseCharacterType(string characterName)
+        {
+            return characterName?.ToLower() switch
+            {
+                "toejam" => CharacterType.ToeJam,
+                _ => CharacterType.Earl
+            };
         }
 
         public void Move(Vector2 movement)
@@ -106,7 +124,7 @@ namespace App1.Source.Engine.Player
                     currentFrame++;
                     timer = 0f;
                     
-                    Rectangle[] currentFrames = earlFrames.GetFrames(isRunning, isSneaking, direction);
+                    Rectangle[] currentFrames = characterFrames.GetFrames(isRunning, isSneaking, direction);
                     
                     if (currentFrame >= currentFrames.Length)
                         currentFrame = 0;
@@ -122,7 +140,7 @@ namespace App1.Source.Engine.Player
         {
             if (texture == null) return;
 
-            Rectangle[] currentFrames = earlFrames.GetFrames(isRunning, isSneaking, direction);
+            Rectangle[] currentFrames = characterFrames.GetFrames(isRunning, isSneaking, direction);
             
             if (currentFrame >= currentFrames.Length)
                 currentFrame = 0;
@@ -147,6 +165,8 @@ namespace App1.Source.Engine.Player
             set => size = value;
         }
 
+        public CharacterType CurrentCharacterType => characterType;
+
         public void ResetAnimation()
         {
             currentFrame = 0;
@@ -162,5 +182,7 @@ namespace App1.Source.Engine.Player
         {
             return switchTime;
         }
+
+        public PlayerHealth Health => health;
     }
 }

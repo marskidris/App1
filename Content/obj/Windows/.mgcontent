@@ -4,10 +4,74 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/AngryBees.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Average_Dentist.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Chicken_With_Mortors.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Cupid.png</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Earl_Transparent.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Earl.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Elevator.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/farmhouse.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/floor_path_tiles.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Fonts.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Funkotron_Scenery.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/HUD_Display.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/items_scenery_tranparent.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Jam_Out.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Land_Tilemap_Hopefully.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/LawnMower_Man.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/LemonadeStand.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Lil_Devil.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Mole_Dog.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/NerdHerd.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/OperaSinger.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Phantom_Ice_Cream_Truck.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/SantaClaus.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Shark.png</File>
     <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/ToeJam_Transparent.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/ToeJam.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Tornado.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Wiseman.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/2D/Wizard.png</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/01 - Toejam Jammin.mp3</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Boogeyman.wav</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Jammin'.wav</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/Audio/Money!.wav</File>
+    <File>C:/Users/Shadow/Desktop/MonoGame/MonotTest2/App1/App1/Content/GameFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
