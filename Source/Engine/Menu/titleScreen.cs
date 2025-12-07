@@ -41,9 +41,13 @@ public class TitleScreen
     private int mainMenuSelection = 0;
     private readonly string[] mainMenuOptions = { "Play", "Quit" };
     
-    // Character select (0 = Earl, 1 = ToeJam)
+    // Character select (0 = Earl, 1 = ToeJam, 2 = Two Players)
     private int characterSelection = 0;
-    private readonly string[] characterOptions = { "Earl", "ToeJam" };
+    private int character2Selection = 0;
+    private bool isTwoPlayerMode = false;
+    private bool selectingPlayer2 = false;
+    private readonly string[] characterOptions = { "Earl", "ToeJam", "Two Players" };
+    private readonly string[] characterOnlyOptions = { "Earl", "ToeJam" };
     
     // Character confirmation
     private float confirmTimer = 0f;
@@ -54,6 +58,8 @@ public class TitleScreen
     
     // Selected character result (null until selected)
     public string SelectedCharacter { get; private set; } = null;
+    public string SelectedCharacter2 { get; private set; } = null;
+    public bool TwoPlayerMode { get; private set; } = false;
     public bool QuitRequested { get; private set; } = false;
     public bool GameStartRequested { get; private set; } = false;
     
@@ -74,8 +80,13 @@ public class TitleScreen
         showText = true;
         mainMenuSelection = 0;
         characterSelection = 0;
+        character2Selection = 0;
+        isTwoPlayerMode = false;
+        selectingPlayer2 = false;
         confirmTimer = 0f;
         SelectedCharacter = null;
+        SelectedCharacter2 = null;
+        TwoPlayerMode = false;
         QuitRequested = false;
         GameStartRequested = false;
         previousKeyboardState = Keyboard.GetState();
@@ -143,26 +154,77 @@ public class TitleScreen
                 break;
                 
             case MenuState.CharacterSelect:
-                if (IsKeyPressed(Keys.Up, currentKeyboardState) || IsKeyPressed(Keys.Left, currentKeyboardState) ||
-                    IsKeyPressed(Keys.W, currentKeyboardState) || IsKeyPressed(Keys.A, currentKeyboardState))
+                if (!isTwoPlayerMode || !selectingPlayer2)
                 {
-                    characterSelection = (characterSelection - 1 + characterOptions.Length) % characterOptions.Length;
+                    if (IsKeyPressed(Keys.Up, currentKeyboardState) || IsKeyPressed(Keys.W, currentKeyboardState) ||
+                        IsKeyPressed(Keys.Left, currentKeyboardState) || IsKeyPressed(Keys.A, currentKeyboardState))
+                    {
+                        characterSelection = (characterSelection - 1 + characterOptions.Length) % characterOptions.Length;
+                    }
+                    if (IsKeyPressed(Keys.Down, currentKeyboardState) || IsKeyPressed(Keys.S, currentKeyboardState) ||
+                        IsKeyPressed(Keys.Right, currentKeyboardState) || IsKeyPressed(Keys.D, currentKeyboardState))
+                    {
+                        characterSelection = (characterSelection + 1) % characterOptions.Length;
+                    }
+                    if (IsKeyPressed(Keys.Enter, currentKeyboardState) || IsKeyPressed(Keys.Space, currentKeyboardState))
+                    {
+                        if (characterSelection == 2)
+                        {
+                            isTwoPlayerMode = true;
+                            characterSelection = 0;
+                        }
+                        else
+                        {
+                            SelectedCharacter = characterOnlyOptions[characterSelection];
+                            if (isTwoPlayerMode)
+                            {
+                                selectingPlayer2 = true;
+                                character2Selection = 0;
+                            }
+                            else
+                            {
+                                TwoPlayerMode = false;
+                                confirmTimer = 0f;
+                                currentState = MenuState.CharacterConfirm;
+                            }
+                        }
+                    }
                 }
-                if (IsKeyPressed(Keys.Down, currentKeyboardState) || IsKeyPressed(Keys.Right, currentKeyboardState) ||
-                    IsKeyPressed(Keys.S, currentKeyboardState) || IsKeyPressed(Keys.D, currentKeyboardState))
+                else
                 {
-                    characterSelection = (characterSelection + 1) % characterOptions.Length;
+                    if (IsKeyPressed(Keys.Up, currentKeyboardState) || IsKeyPressed(Keys.Left, currentKeyboardState))
+                    {
+                        character2Selection = (character2Selection - 1 + characterOnlyOptions.Length) % characterOnlyOptions.Length;
+                    }
+                    if (IsKeyPressed(Keys.Down, currentKeyboardState) || IsKeyPressed(Keys.Right, currentKeyboardState))
+                    {
+                        character2Selection = (character2Selection + 1) % characterOnlyOptions.Length;
+                    }
+                    if (IsKeyPressed(Keys.OemPeriod, currentKeyboardState) || IsKeyPressed(Keys.Enter, currentKeyboardState))
+                    {
+                        SelectedCharacter2 = characterOnlyOptions[character2Selection];
+                        TwoPlayerMode = true;
+                        confirmTimer = 0f;
+                        currentState = MenuState.CharacterConfirm;
+                    }
                 }
-                if (IsKeyPressed(Keys.Enter, currentKeyboardState))
-                {
-                    SelectedCharacter = characterOptions[characterSelection];
-                    confirmTimer = 0f;
-                    currentState = MenuState.CharacterConfirm;
-                }
-                // Go back with Escape
+                
                 if (IsKeyPressed(Keys.Escape, currentKeyboardState))
                 {
-                    currentState = MenuState.MainMenu;
+                    if (selectingPlayer2)
+                    {
+                        selectingPlayer2 = false;
+                        SelectedCharacter = null;
+                    }
+                    else if (isTwoPlayerMode)
+                    {
+                        isTwoPlayerMode = false;
+                        characterSelection = 0;
+                    }
+                    else
+                    {
+                        currentState = MenuState.MainMenu;
+                    }
                 }
                 break;
                 
@@ -280,35 +342,81 @@ public class TitleScreen
     {
         if (fontTexture == null || letterFrames == null) return;
         
-        // Draw "Select Character" header
         int headerScale = 6;
         int headerSpacing = 4;
-        string headerText = "Select Character";
+        string headerText;
+        if (selectingPlayer2)
+            headerText = "Player 2 Select";
+        else if (isTwoPlayerMode)
+            headerText = "Player 1 Select";
+        else
+            headerText = "Select Character";
         int headerWidth = CalculateTextWidth(headerText, headerScale, headerSpacing);
         int headerX = (screenWidth - headerWidth) / 2;
-        int headerY = screenHeight / 2 - 20;
+        int headerY = screenHeight / 2 - 60;
         DrawText(spriteBatch, headerText, headerX, headerY, headerScale, headerSpacing);
         
-        // Draw character options
         int menuScale = 8;
         int menuSpacing = 6;
         int optionSpacing = 60;
-        int startY = screenHeight / 2 + 40;
+        int startY = screenHeight / 2;
         
-        for (int i = 0; i < characterOptions.Length; i++)
+        if (selectingPlayer2)
         {
-            string option = characterOptions[i];
-            string displayText = (i == characterSelection) ? "> " + option : "  " + option;
+            for (int i = 0; i < characterOnlyOptions.Length; i++)
+            {
+                string option = characterOnlyOptions[i];
+                string displayText = (i == character2Selection) ? "> " + option : "  " + option;
+                
+                int textWidth = CalculateTextWidth(displayText, menuScale, menuSpacing);
+                int startX = (screenWidth - textWidth) / 2;
+                int y = startY + i * optionSpacing;
+                
+                if (i == character2Selection && !showText)
+                    continue;
+                
+                DrawText(spriteBatch, displayText, startX, y, menuScale, menuSpacing);
+            }
             
-            int textWidth = CalculateTextWidth(displayText, menuScale, menuSpacing);
-            int startX = (screenWidth - textWidth) / 2;
-            int y = startY + i * optionSpacing;
-            
-            // Blink selected option
-            if (i == characterSelection && !showText)
-                continue;
-            
-            DrawText(spriteBatch, displayText, startX, y, menuScale, menuSpacing);
+            string hint = "Arrows and . to select";
+            int hintWidth = CalculateTextWidth(hint, 4, 3);
+            int hintX = (screenWidth - hintWidth) / 2;
+            int hintY = startY + characterOnlyOptions.Length * optionSpacing + 30;
+            DrawText(spriteBatch, hint, hintX, hintY, 4, 3);
+        }
+        else if (isTwoPlayerMode)
+        {
+            for (int i = 0; i < characterOnlyOptions.Length; i++)
+            {
+                string option = characterOnlyOptions[i];
+                string displayText = (i == characterSelection) ? "> " + option : "  " + option;
+                
+                int textWidth = CalculateTextWidth(displayText, menuScale, menuSpacing);
+                int startX = (screenWidth - textWidth) / 2;
+                int y = startY + i * optionSpacing;
+                
+                if (i == characterSelection && !showText)
+                    continue;
+                
+                DrawText(spriteBatch, displayText, startX, y, menuScale, menuSpacing);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < characterOptions.Length; i++)
+            {
+                string option = characterOptions[i];
+                string displayText = (i == characterSelection) ? "> " + option : "  " + option;
+                
+                int textWidth = CalculateTextWidth(displayText, menuScale, menuSpacing);
+                int startX = (screenWidth - textWidth) / 2;
+                int y = startY + i * optionSpacing;
+                
+                if (i == characterSelection && !showText)
+                    continue;
+                
+                DrawText(spriteBatch, displayText, startX, y, menuScale, menuSpacing);
+            }
         }
     }
     
@@ -316,19 +424,40 @@ public class TitleScreen
     {
         if (fontTexture == null || letterFrames == null) return;
         
-        // Display "[Character] Selected" message
-        string confirmText = SelectedCharacter + " Selected";
         int confirmScale = 10;
         int confirmSpacing = 6;
-        int textWidth = CalculateTextWidth(confirmText, confirmScale, confirmSpacing);
         int avgLetterHeight = 7 * confirmScale;
-        int startX = (screenWidth - textWidth) / 2;
-        int startY = (screenHeight - avgLetterHeight) / 2;
         
-        // Blink the confirmation text
-        if (showText)
+        if (TwoPlayerMode)
         {
-            DrawText(spriteBatch, confirmText, startX, startY, confirmScale, confirmSpacing);
+            confirmScale = 8;
+            string p1Text = "P1 " + SelectedCharacter;
+            int p1Width = CalculateTextWidth(p1Text, confirmScale, confirmSpacing);
+            int p1X = (screenWidth - p1Width) / 2;
+            int p1Y = (screenHeight - avgLetterHeight) / 2 - 40;
+            
+            string p2Text = "P2 " + SelectedCharacter2;
+            int p2Width = CalculateTextWidth(p2Text, confirmScale, confirmSpacing);
+            int p2X = (screenWidth - p2Width) / 2;
+            int p2Y = (screenHeight - avgLetterHeight) / 2 + 40;
+            
+            if (showText)
+            {
+                DrawText(spriteBatch, p1Text, p1X, p1Y, confirmScale, confirmSpacing);
+                DrawText(spriteBatch, p2Text, p2X, p2Y, confirmScale, confirmSpacing);
+            }
+        }
+        else
+        {
+            string confirmText = SelectedCharacter + " Selected";
+            int textWidth = CalculateTextWidth(confirmText, confirmScale, confirmSpacing);
+            int startX = (screenWidth - textWidth) / 2;
+            int startY = (screenHeight - avgLetterHeight) / 2;
+            
+            if (showText)
+            {
+                DrawText(spriteBatch, confirmText, startX, startY, confirmScale, confirmSpacing);
+            }
         }
     }
     

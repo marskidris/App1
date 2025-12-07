@@ -65,6 +65,7 @@ public class Menu
         ReturnToTitleRequested = false;
         QuitRequested = false;
         menuSelection = 0;
+        previousKeyboardState = Keyboard.GetState();
     }
     
     public void Deactivate()

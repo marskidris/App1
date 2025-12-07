@@ -27,6 +27,9 @@ public class GameState
     public bool QuitRequested { get; private set; } = false;
     public bool ReturnToTitleRequested { get; private set; } = false;
     public string SelectedCharacter { get; private set; } = null;
+    public string SelectedCharacter2 { get; private set; } = null;
+    public bool TwoPlayerMode { get; private set; } = false;
+    private bool skipNextKeyboardUpdate = false;
 
     public void PauseGameplay()
     {
@@ -80,8 +83,17 @@ public class GameState
     
     public void Update(GameTime gameTime)
     {
-        previousKeyboardState = currentKeyboardState;
-        currentKeyboardState = Keyboard.GetState();
+        if (skipNextKeyboardUpdate)
+        {
+            skipNextKeyboardUpdate = false;
+            previousKeyboardState = Keyboard.GetState();
+            currentKeyboardState = previousKeyboardState;
+        }
+        else
+        {
+            previousKeyboardState = currentKeyboardState;
+            currentKeyboardState = Keyboard.GetState();
+        }
         
         if (CurrentState == GameStateType.StartScreen)
         {
@@ -96,6 +108,10 @@ public class GameState
             {
                 CurrentState = GameStateType.Playing;
                 SelectedCharacter = titleScreen.SelectedCharacter;
+                SelectedCharacter2 = titleScreen.SelectedCharacter2;
+                TwoPlayerMode = titleScreen.TwoPlayerMode;
+                skipNextKeyboardUpdate = true;
+                return;
             }
         }
         else if (CurrentState == GameStateType.PausedMenu)
@@ -106,6 +122,8 @@ public class GameState
             {
                 pauseMenu.Deactivate();
                 CurrentState = GameStateType.Playing;
+                skipNextKeyboardUpdate = true;
+                return;
             }
             
             if (pauseMenu.ReturnToTitleRequested)
@@ -113,6 +131,8 @@ public class GameState
                 pauseMenu.Deactivate();
                 titleScreen.Reset();
                 SelectedCharacter = null;
+                SelectedCharacter2 = null;
+                TwoPlayerMode = false;
                 ReturnToTitleRequested = true;
                 CurrentState = GameStateType.StartScreen;
             }

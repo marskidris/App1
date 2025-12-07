@@ -10,13 +10,30 @@ namespace App1.Source.Engine.Player
         private Player _player;
         private KeyboardState _previousKeyboardState;
         private MovementState _currentState;
+        
+        private Keys _upKey;
+        private Keys _downKey;
+        private Keys _leftKey;
+        private Keys _rightKey;
+        private Keys _runKey;
+        private Keys _sneakKey;
 
         public PlayerMovement(Player player)
+            : this(player, Keys.W, Keys.S, Keys.A, Keys.D, Keys.R, Keys.E)
+        {
+        }
+
+        public PlayerMovement(Player player, Keys upKey, Keys downKey, Keys leftKey, Keys rightKey, Keys runKey, Keys sneakKey)
         {
             _player = player;
             _previousKeyboardState = Keyboard.GetState();
             _currentState = new WalkingState(player);
-            Console.WriteLine("Walking State is Active");
+            _upKey = upKey;
+            _downKey = downKey;
+            _leftKey = leftKey;
+            _rightKey = rightKey;
+            _runKey = runKey;
+            _sneakKey = sneakKey;
         }
 
         public void Update(GameTime gameTime)
@@ -24,8 +41,8 @@ namespace App1.Source.Engine.Player
             KeyboardState currentKeyboardState = Keyboard.GetState();
             Vector2 velocity = Vector2.Zero;
             
-            bool rKeyPressed = currentKeyboardState.IsKeyDown(Keys.R) && !_previousKeyboardState.IsKeyDown(Keys.R);
-            bool eKeyPressed = currentKeyboardState.IsKeyDown(Keys.E) && !_previousKeyboardState.IsKeyDown(Keys.E);
+            bool rKeyPressed = currentKeyboardState.IsKeyDown(_runKey) && !_previousKeyboardState.IsKeyDown(_runKey);
+            bool eKeyPressed = currentKeyboardState.IsKeyDown(_sneakKey) && !_previousKeyboardState.IsKeyDown(_sneakKey);
 
             if (eKeyPressed)
             {
@@ -35,7 +52,6 @@ namespace App1.Source.Engine.Player
                     _player.ResetAnimation();
                     _player.SetAnimationSpeed(0.1f);
                     _player.SetMovementState(false, false);
-                    Console.WriteLine("Walking State is Active");
                 }
                 else
                 {
@@ -43,7 +59,6 @@ namespace App1.Source.Engine.Player
                     _player.ResetAnimation();
                     _player.SetAnimationSpeed(0.2f);
                     _player.SetMovementState(false, true);
-                    Console.WriteLine("Sneak State is Active");
                 }
             }
             else if (rKeyPressed)
@@ -54,7 +69,6 @@ namespace App1.Source.Engine.Player
                     _player.ResetAnimation();
                     _player.SetAnimationSpeed(0.05f);
                     _player.SetMovementState(true, false);
-                    Console.WriteLine("Running State is Active");
                 }
                 else if (_currentState is RunningState)
                 {
@@ -62,7 +76,6 @@ namespace App1.Source.Engine.Player
                     _player.ResetAnimation();
                     _player.SetAnimationSpeed(0.1f);
                     _player.SetMovementState(false, false);
-                    Console.WriteLine("Walking State is Active");
                 }
                 else if (_currentState is SneakState)
                 {
@@ -70,7 +83,6 @@ namespace App1.Source.Engine.Player
                     _player.ResetAnimation();
                     _player.SetAnimationSpeed(0.05f);
                     _player.SetMovementState(true, false);
-                    Console.WriteLine("Running State is Active");
                 }
             }
             
@@ -78,19 +90,19 @@ namespace App1.Source.Engine.Player
             
             float currentSpeed = _currentState.GetSpeed();
             
-            if (currentKeyboardState.IsKeyDown(Keys.W))
+            if (currentKeyboardState.IsKeyDown(_upKey))
             {
                 velocity.Y = -currentSpeed;
             }
-            if (currentKeyboardState.IsKeyDown(Keys.S))
+            if (currentKeyboardState.IsKeyDown(_downKey))
             {
                 velocity.Y = currentSpeed;
             }
-            if (currentKeyboardState.IsKeyDown(Keys.A))
+            if (currentKeyboardState.IsKeyDown(_leftKey))
             {
                 velocity.X = -currentSpeed;
             }
-            if (currentKeyboardState.IsKeyDown(Keys.D))
+            if (currentKeyboardState.IsKeyDown(_rightKey))
             {
                 velocity.X = currentSpeed;
             }
