@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using App1.Source;
+﻿﻿﻿﻿﻿using App1.Source;
 using App1.Source.Engine;
 using App1.Source.Engine.Menu;
 using App1.Source.Engine.Player;
@@ -57,6 +57,55 @@ public class Main : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         _previousKeyboardState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
+        
+        PrintInstructions();
+    }
+    
+    private void PrintInstructions()
+    {
+        Console.WriteLine("==========================================");
+        Console.WriteLine("       TOEJAM & EARL - HOW TO PLAY        ");
+        Console.WriteLine("==========================================");
+        Console.WriteLine();
+        Console.WriteLine("MENU CONTROLS:");
+        Console.WriteLine("  Arrow Keys / WASD  - Navigate menu");
+        Console.WriteLine("  Enter / Space      - Select option");
+        Console.WriteLine("  Escape             - Go back / Exit");
+        Console.WriteLine();
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("SINGLE PLAYER MODE:");
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("  W / A / S / D      - Move character");
+        Console.WriteLine("  R                  - Toggle run mode");
+        Console.WriteLine("  E                  - Toggle sneak mode");
+        Console.WriteLine("  Space              - Attack / Pause game");
+        Console.WriteLine("  M                  - Toggle map");
+        Console.WriteLine();
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("TWO PLAYER MODE:");
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine("Select 'Two Players' in character select.");
+        Console.WriteLine("Player 1 selects first, then Player 2.");
+        Console.WriteLine();
+        Console.WriteLine("PLAYER 1 (Left Screen):");
+        Console.WriteLine("  W / A / S / D      - Move character");
+        Console.WriteLine("  R                  - Toggle run mode");
+        Console.WriteLine("  E                  - Toggle sneak mode");
+        Console.WriteLine("  Space              - Attack / Pause game");
+        Console.WriteLine();
+        Console.WriteLine("PLAYER 2 (Right Screen):");
+        Console.WriteLine("  Arrow Keys         - Move character");
+        Console.WriteLine("  . (Period)         - Toggle run mode");
+        Console.WriteLine("  / (Slash)          - Toggle sneak mode");
+        Console.WriteLine();
+        Console.WriteLine("SHARED:");
+        Console.WriteLine("  M                  - Toggle map");
+        Console.WriteLine("  Space              - Pause game");
+        Console.WriteLine();
+        Console.WriteLine("==========================================");
+        Console.WriteLine("         HAVE FUN PLAYING!                ");
+        Console.WriteLine("==========================================");
+        Console.WriteLine();
     }
 
     protected override void Initialize()
